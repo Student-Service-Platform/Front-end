@@ -1,14 +1,10 @@
 <script setup lang="ts">
+import CusButton2 from './ui/CusButton2.vue';
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
+    <cus-button2 content="查看"></cus-button2>
   </header>
 
   <RouterView />
