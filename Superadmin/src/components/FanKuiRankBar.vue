@@ -42,7 +42,7 @@
   
   <script>
   export default {
-    name: 'FamKuiRankBar',
+    name: 'FanKuiRankBar',
     data() {
       return {
         // 管理员数据
