@@ -8,4 +8,5 @@ npm run dev
 > 如需安装新的依赖
 ```
 npm install
+npm install echarts --save
 ```
