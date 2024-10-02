@@ -10,8 +10,9 @@ Args:
         对象结构{
             title: 列表头,
             select: 被选择时触发,
-            default: 默认被选中
         }
+    default:
+        默认选中的项目下标
 -->
 
 <template>
@@ -23,7 +24,7 @@ Args:
             <div class="ColItem">
                 <p>列表</p>
             </div>
-            <div class="ColItem" v-for="(item, index) in items" :key="index" @click="select" @selected="item.select">
+            <div class="ColItem" v-for="(item, index) in items" :key="index" @click="select(index)" @selected="item.select" :class="selectIndex == index ? 'Selected' : ''">
                 <p>{{ item.title }}</p>
             </div>
         </div>
@@ -34,15 +35,24 @@ Args:
 export default {
     props: {
         content: String,
-        items: Array<{
-            title: String,
-            select: Function,
-            default?: Boolean
-        }>
+        items: {
+            type: Array<{
+                title: String,
+                select: Function,
+            }>,
+            required: true
+        },
+        default: Number
+    },
+    data () {
+        return {
+            selectIndex: this.default
+        }
     },
     methods: {
-        select () {
-            
+        select (index:number) {
+            this.selectIndex = index            
+            this.$emit("selected")
         }
     }
 }

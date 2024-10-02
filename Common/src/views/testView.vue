@@ -31,7 +31,7 @@ export default {
 </script>
 
 <template>
-    <cus-column content="这是菜单" :items="[{title:'这是选项',select:()=>{}}]"></cus-column>
+    <cus-column content="这是菜单" :items="[{title:'这是选项',select:()=>{}},{title:'这是选项',select:()=>{}}]" :default="0"></cus-column>
     <div style="position:absolute;left: 400px;top:70px">
         <cus-box :input=true content="这是输入框" h="200px" w="200px"></cus-box>
         <cus-box :input=false content="这不是输入框" h="200px" w="200px" :textAlign="['left','top']"></cus-box>
