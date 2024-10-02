@@ -8,7 +8,7 @@ Latest: 2024.9.29 20:59
 <template>
     <div>
         <span>{{ content }}</span>
-        <input type="checkbox">
+        <input type="checkbox" v-model="checked">
     </div>
 </template>
 
@@ -16,6 +16,11 @@ Latest: 2024.9.29 20:59
 export default {
     props:{
         content: String
+    },
+    data() {
+        return{
+            checked: false
+        }
     }
 }
 </script>

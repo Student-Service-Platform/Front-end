@@ -93,6 +93,7 @@ export default {
     width: 274px;
     background: rgb(255, 255, 255);
     padding: 0;
+    cursor: pointer;
 }
 .ColBody>.ColItem{
     position: relative;
