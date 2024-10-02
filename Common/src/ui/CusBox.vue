@@ -2,7 +2,7 @@
 Author: 杨龙辉
 Description: 基础方框组件
 CreatedAt: 2024.9.29 21:39
-Latest: 2024.9.29 21:39
+Latest: 2024.10.2 16:59
 
 Args: 
     input   true为输入框(textarea) false为文本显示(p)
@@ -31,10 +31,19 @@ Args:
 <script>
 export default {
     props:{
-        input: Boolean,
+        input: {
+            type: Boolean,
+            default: false
+        },
         content: String,
-        h: String,
-        w: String,
+        h: {
+            type: String,
+            default: "200px"
+        },
+        w: {
+            type: String,
+            default: "200px"
+        },
         textAlign: Array
     }
 }

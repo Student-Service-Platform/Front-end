@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import CusButton2 from './ui/CusButton2.vue';
+import CusColumn from '@/ui/CusColumn.vue';
 </script>
 
 <template>
   <header>
-    <cus-button2 content="查看"></cus-button2>
+    <cus-column content="查看" :items="[{title:'未处理反馈',select:()=>{}}]"></cus-column>
   </header>
 
   <RouterView />

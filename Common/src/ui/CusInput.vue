@@ -2,7 +2,7 @@
 Author: 杨龙辉
 Description: 基础输入框组件
 CreatedAt: 2024.9.29 20:02
-Latest: 2024.9.29 20:02
+Latest: 2024.10.2 17:04
 -->
 
 <template>
@@ -13,10 +13,15 @@ Latest: 2024.9.29 20:02
 </template>
 
 <script lang="ts">
+import err from "@/assets/404.png"
+
 export default {
     name: "cus-input",
     props: {
-        path: String,
+        path: {
+            type: String,
+            default: err
+        },
         content: String,
     }
 }
