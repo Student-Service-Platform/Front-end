@@ -1,13 +1,15 @@
+<!--
+Author:陈曦
+Descripiton: 超级管理员 可视化 大屏 12个月反馈柱形图
+CreatedAT：2024.10.1 13：30
+Latest：2024.10.1 19：28
 
-// Author:陈曦
-// Descripiton: 超级管理员 可视化 大屏 12个月反馈柱形图
-// CreatedAT：2024.10.1 13：30
-// Latest：2024.10.1 19：28
-// NB:
-// 1.在工作文件夹需要 npm install echarts --save (好像直接远程仓库搞不了？？)
-// 2.在main.js 加上：
-// import * as echarts from 'echarts';  // 导入整个 ECharts 模块
-// app.config.globalProperties.$echarts = echarts;
+NB:
+  1.在工作文件夹需要 npm install echarts --save (好像直接远程仓库搞不了？？)
+  2.在main.js 加上：
+import * as echarts from 'echarts';  // 导入整个 ECharts 模块
+app.config.globalProperties.$echarts = echarts;
+-->
 
 <template>
     <div class="bar1-component">

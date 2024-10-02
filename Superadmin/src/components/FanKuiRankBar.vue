@@ -1,3 +1,4 @@
+<!--
 // Author:陈曦
 // Descripiton: 超级管理员 可视化 大屏 管理员排行榜
 // CreatedAT：2024.10.1 13：30
@@ -7,6 +8,7 @@
 // 2.在main.js 加上：
 // import * as echarts from 'echarts';  // 导入整个 ECharts 模块
 // app.config.globalProperties.$echarts = echarts;
+-->
 
 
 

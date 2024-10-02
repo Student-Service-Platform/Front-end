@@ -1,8 +1,10 @@
+<!--
 // Author:韩磊
 // Descripiton: 超级管理员 可视化 大屏 饼图
 // CreatedAT：2024.10.1 10：00
 // Latest：2024.10.2 16：30
 // 需要npm install echarts --save
+-->
 
 <template>
   <div id="app1">
