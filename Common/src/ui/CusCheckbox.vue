@@ -32,7 +32,7 @@ export default {
     span {
         position: absolute;
         left: 38px;
-        width: 42px;
+        text-wrap: nowrap;
         height: 20px;
         font-family: 阿里巴巴普惠体;
         font-size: 14px;

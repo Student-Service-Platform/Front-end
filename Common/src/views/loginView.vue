@@ -4,11 +4,9 @@
 
 <script lang="ts">
     import CusInput from '@/ui/CusInput.vue';
-
     export default {
-        name: "login-view",
-        components: [
+        components: {
             CusInput
-        ]
+        }
     }
 </script>

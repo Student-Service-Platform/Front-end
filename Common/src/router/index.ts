@@ -2,7 +2,7 @@
 // 我未作大量修改
 
 import { createRouter, createWebHistory } from 'vue-router'
-import loginView from '@/views/loginView.vue'
+import { testView } from '@/views'
 import App from '@/App.vue'
 
 const router = createRouter({
@@ -10,11 +10,11 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      component: App
+      component: testView
     },
     {
       path: "/login",
-      component: loginView
+      component: testView
     }
   ]
 })

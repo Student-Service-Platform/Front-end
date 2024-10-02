@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import CusColumn from '@/ui/CusColumn.vue';
+  import navBar from "@/components/navBar.vue"
 </script>
 
 <template>
   <header>
-    <cus-column content="查看" :items="[{title:'未处理反馈',select:()=>{}}]"></cus-column>
+    <nav-bar :user="{userID:'1',userName:'test'}"></nav-bar>
   </header>
 
-  <RouterView />
+  <RouterView style="position: absolute;top: 62px;"/>
 </template>
 
 <style scoped>

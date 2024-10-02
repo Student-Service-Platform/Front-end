@@ -29,6 +29,7 @@ export default {
     span{
         position: relative;
         height: 20px;
+        text-wrap: nowrap;
         margin-top: 3px;
         margin-right: 30px;
         color: rgb(82, 82, 82);

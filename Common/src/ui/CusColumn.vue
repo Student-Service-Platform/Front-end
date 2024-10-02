@@ -53,7 +53,7 @@ export default {
     left: 0;
     top: 62px;
     bottom: 0;
-    position: absolute;
+    position: fixed;
     width: 72px;
     background: rgb(255, 255, 255);
     border-color: #D8D8D9;
@@ -62,8 +62,8 @@ export default {
     box-sizing: border-box;
 }
 .ColTitle>p{
-    left: 12px;
-    top: 24px;
+    right: -24px;
+    top: 30px;
     height: 24px;
     width: auto;
     position: absolute;
@@ -79,7 +79,7 @@ export default {
     left: 72px;
     top: 62px;
     bottom: 0;
-    position: absolute;
+    position: fixed;
     width: 274px;
     background: rgb(255, 255, 255);
     padding: 0;

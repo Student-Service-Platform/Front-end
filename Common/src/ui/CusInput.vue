@@ -39,6 +39,7 @@ border: 1px solid rgb(217, 217, 217);
 border-radius: 4px;
 box-sizing: border-box;
 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+padding-left: 48px;
 }
 img{
     z-index: 1;
@@ -52,8 +53,6 @@ input::placeholder {
     position: absolute;
     top: 8px;
     left: 48px;
-    width: 55px;
-    height: 20px;
     color: rgb(140, 140, 140);
     font-family: 阿里巴巴普惠体;
     font-size: 14px;
