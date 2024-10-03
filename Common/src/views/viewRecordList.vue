@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CusBox from '@/ui/CusBox.vue';         // 引入 CusBox 组件
 import CusColumn from '@/ui/CusColumn.vue';   // 引入 CusColumn 组件
+import CusButton2 from '@/ui/CusButton2.vue';
 
 // 模拟数据
 const rows = Array(20).fill({
@@ -20,7 +21,7 @@ const rows = Array(20).fill({
     <cus-column content="内容" :items="[
       {title: '反馈提交', select: () => {}}, 
       {title: '反馈记录', select: () => {}}
-    ]"></cus-column>
+    ]" :default="0"></cus-column>
   </header>
 
   <!-- 右侧表格 -->
@@ -44,7 +45,9 @@ const rows = Array(20).fill({
       <cus-box :input="false" :content="row.urgency" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
       <cus-box :input="false" :content="row.anonymous" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
       <cus-box :input="false" :content="row.progress" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
-      <cus-box :input="false" :content="row.action" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
+      <cus-box :input="false" h="60px" w="129px" style="background-color: rgb(255, 255, 255);">
+        <cus-button2 content="查看"></cus-button2>
+      </cus-box>
      <!--
       使用button2按钮出现错乱
       尝试1：

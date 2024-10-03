@@ -24,7 +24,8 @@ Args:
 <template>
     <div :style="{width:w,height:h}">
         <textarea v-if="input" :placeholder="content"></textarea>
-        <p v-else :class="textAlign">{{ content }}</p>
+        <p v-else-if="content" :class="textAlign">{{ content }}</p>
+        <slot></slot>
     </div>
 </template>
 
@@ -35,7 +36,10 @@ export default {
             type: Boolean,
             default: false
         },
-        content: String,
+        content: {
+            type: String,
+            required: false
+        },
         h: {
             type: String,
             default: "200px"

@@ -49,7 +49,12 @@ export default {
 
     <!-- 第二行：是否紧急等 -->
     <div style="display: flex;">
-      <cus-box :input="false" content="紧急度 5 4 3 2 1 是否匿名 是否处理" h="60px" w="845px" :textAlign="['left', 'top']"></cus-box>
+      <cus-box :input="false" content="紧急度 5 4 3 2 1 是否匿名 是否处理" h="60px" w="845px" :textAlign="['left', 'top']">
+        <div>
+          <span>紧急度</span>
+          <CusCheckbox v-for="index in 5" :content="index" :key="index"></CusCheckbox>
+        </div>
+      </cus-box>
     </div>
 
     <!-- 第三行：问题类别 -->
