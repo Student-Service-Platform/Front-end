@@ -2,7 +2,7 @@
 // 我未作大量修改
 
 import { createRouter, createWebHistory } from 'vue-router'
-import { testView, RegisterView, LoginView, recordExpansion, viewRecordList } from '@/views'
+import { testView, RegisterView, LoginView, recordExpansion, viewRecordList, postRecord,  } from '@/views'
 import { loginGuard } from './guard'
 
 const router = createRouter({
@@ -26,7 +26,7 @@ const router = createRouter({
     {
       name: "record",
       path: "/feedback/post",
-      component: recordExpansion,
+      component: postRecord,
     },
     {
       name: "view",

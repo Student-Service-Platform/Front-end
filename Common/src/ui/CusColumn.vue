@@ -24,9 +24,9 @@ Args:
             <div class="ColItem" style="cursor: default;">
                 <p>列表</p>
             </div>
-            <div class="ColItem" v-for="(item, index) in items" :key="index" @click="select(index)" @selected="item.select" :class="selectIndex == index ? 'Selected' : ''">
+            <router-link class="ColItem" v-for="(item, index) in items" :key="index" @click="select(index)" :to="item.to" :class="selectIndex == index ? 'Selected' : ''">
                 <p>{{ item.title }}</p>
-            </div>
+            </router-link>
         </div>
     </div>
 </template>
@@ -38,7 +38,7 @@ export default {
         items: {
             type: Array<{
                 title: String,
-                select: Function,
+                to: Object,
             }>,
             required: true
         },
@@ -52,7 +52,6 @@ export default {
     methods: {
         select (index:number) {
             this.selectIndex = index            
-            this.$emit("selected")
         }
     }
 }
@@ -104,8 +103,13 @@ export default {
     border-style: solid;
     border-width: 1px;
     box-sizing: border-box;
-
+    display: block;
+    text-decoration: none;
 }
+.ColBody>.ColItem:active{
+    text-decoration: none;
+}
+
 .ColBody>.ColItem>p{
     height: 42px;
     color: rgb(0, 0, 0);

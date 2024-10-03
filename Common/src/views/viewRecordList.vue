@@ -18,10 +18,10 @@ const rows = Array(20).fill({
 <template>
   <header>
     <!-- 左侧菜单栏 -->
-    <cus-column content="内容" :items="[
-      {title: '反馈提交', select: () => {}}, 
-      {title: '反馈记录', select: () => {}}
-    ]" :default="1"></cus-column>
+    <cus-column content="内容" :items="[ 
+      {title: '反馈记录', to: {name:'view'}}, 
+      {title: '反馈提交', to: {name:'record'}}
+    ]" :default="0"></cus-column>
   </header>
 
   <!-- 右侧表格 -->

@@ -51,6 +51,7 @@ export default {
         appearance:none;
         top: 0;
         right: 0;
+        cursor: pointer;
     }
 
     input::after{

@@ -83,6 +83,8 @@ export default {
     textarea{
         width: 100%;
         height: 100%;
+        border: none;
+        margin: 0;
         resize: none;
     }
 

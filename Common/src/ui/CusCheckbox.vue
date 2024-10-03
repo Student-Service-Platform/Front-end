@@ -7,21 +7,23 @@ Latest: 2024.9.29 20:21
 
 <template>
     <div>
-        <input type="checkbox" v-model="checked">
+        <input type="checkbox" :disabled="readonly" :value="value" :checked="modelValue==value" @click="$emit('update:modelValue',value);">
         <span>{{ content }}</span>
     </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
     props: {
-        content: String
+        content: String,
+        readonly: {
+            type: Boolean,
+            default: false
+        },
+        modelValue: Number,
+        value: Number,
     },
-    data() {
-        return{
-            checked: false
-        }
-    }
+    emits:["update:modelValue"],
 }
 </script>
 
@@ -36,7 +38,7 @@ export default {
     }
     span {
         position: absolute;
-        left: 38px;
+        left: 30px;
         text-wrap: nowrap;
         height: 20px;
         font-family: 阿里巴巴普惠体;
@@ -76,7 +78,6 @@ export default {
         font-size: 10px;
         line-height: 15px;
         background-color: #51C0FF;
-
     }
 
 </style>
