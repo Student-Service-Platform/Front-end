@@ -12,33 +12,40 @@ import PhoneNumber from "@/assets/PhoneNumber.png";
 <template>
     <div class="register">
         <h1 class="zhuce">注册</h1>
-        <div class="input-container1">
-            <cus-input :path="AugmentedReality" content="请输入学号" required></cus-input>
-        </div>
-        <div class="input-container2">
-            <cus-input :path="user" content="请输入用户名" required></cus-input>
-        </div>
-        <div class="input-container3">
-            <cus-input :path="password" content="请输入密码" required></cus-input>
-        </div>
-        <div class="input-container4">
-            <cus-input :path="password" content="请再次输入密码" required></cus-input>
-        </div>
-        <div class="input-container5">
-            <cus-input :path="Mail" content="请输入邮箱" required></cus-input>
-        </div>
-        <div class="input-container6">
-            <cus-input :path="code" content="请输入验证码" required></cus-input>
-        </div>
-        <div class="input-container7">
-            <cus-input :path="PhoneNumber" content="请输入手机号" required></cus-input>
-        </div>
-        <cus-button class="register-btn" content="注册"></cus-button>
-        <cus-button class="code-btn" type="button" content="发送验证码"></cus-button>
+        <div class="Rectange"></div>
+        <header>
+            <cus-input class="input-container1" :path="AugmentedReality" content="请输入学号" required></cus-input>
+
+            <cus-input class="input-container2" :path="user" content="请输入用户名" required></cus-input>
+
+            <cus-input class="input-container3" :path="password" content="请输入密码" required></cus-input>
+
+            <cus-input class="input-container4" :path="password" content="请再次输入密码" required></cus-input>
+
+            <cus-input class="input-container5" :path="Mail" content="请输入邮箱" required></cus-input>
+
+            <cus-input class="input-container6" :path="code" content="请输入验证码" required></cus-input>
+
+            <cus-input class="input-container7" :path="PhoneNumber" content="请输入手机号" required></cus-input>
+
+            <cus-button class="register-btn" content="注册"></cus-button>
+
+            <button class="code-btn" type="button">发送验证码</button>
+        </header>
     </div>
 </template>
-
 <style>
+.register {
+    position: fixed;
+    top: 0;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
 div.Rectange {
     z-index: 1;
     position: absolute;
@@ -116,13 +123,6 @@ div.Rectange {
 .register-btn {
     z-index: 3;
     font-size: 16px;
-    color: rgb(255, 255, 255);
-    border-radius: 4px;
-    background: rgb(82, 176, 181);
-    border: none;
-    padding: 10px 20px;
-    width: 308px;
-    border-radius: 5px;
     cursor: pointer;
     position: absolute;
     transform: translate(-50%, -50%);
@@ -146,5 +146,8 @@ div.Rectange {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.code-btn:active{
+    background: rgb(66, 144, 148);
 }
 </style>

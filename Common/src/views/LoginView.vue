@@ -10,26 +10,36 @@ import code from "@/assets/code.png";
 <template>
     <div class="login">
         <h1 class="denglu">登录</h1>
-        <div class="input-container1">
-            <cus-input :path="AugmentedReality" content="请输入ID" required></cus-input>
-        </div>
-        <div class="input-container2">
-            <cus-input :path="password" content="请输入密码" required></cus-input>
-        </div>
-        <div>
-            <cus-input class="input-container3" :path="code" content="请输入验证码" required></cus-input>
-        </div>
-        <div class="check-box">
-            <checkbox content="管理员"></checkbox>
-        </div>
-        <div class="little-words">
-        <p type="button" style="left:57%;">忘记密码</p>
-        </div>
-        <cus-button content="登录"></cus-button>
+        <div class="Rectange189"></div>
+        <header>
+
+                <cus-input class="input-container1" :path="AugmentedReality" content="请输入ID" required></cus-input>
+
+                <cus-input class="input-container2" :path="password" content="请输入密码" required></cus-input>
+
+                <cus-input class="input-container3" :path="code" content="请输入验证码" required></cus-input>
+
+                <checkbox class="check-box" content="管理员"></checkbox>
+
+                <p class="little-words" type="button" style="left:57%;">忘记密码</p>
+
+                <cus-button class="login-btn" content="登录"></cus-button>
+        </header>
     </div>
 </template>
 
 <style scoped>
+.login {
+    position: fixed;
+    top: 0;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
 div.Rectange189 {
     z-index: 1;
     position: absolute;
@@ -91,7 +101,7 @@ p {
     position: absolute;
     transform: translate(-50%, -50%);
     left: 41.5%;
-    top: 58%;
+    top: 59.5%;
     color: rgb(140, 140, 140);
 }
 .login-btn {
@@ -111,5 +121,3 @@ p {
     top: 64%;
 }
 </style>
-
-
