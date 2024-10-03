@@ -21,7 +21,7 @@ Args:
             <p style="font-weight: 400;">{{ content }}</p>
         </div>
         <div class="ColBody">
-            <div class="ColItem">
+            <div class="ColItem" style="cursor: default;">
                 <p>列表</p>
             </div>
             <div class="ColItem" v-for="(item, index) in items" :key="index" @click="select(index)" @selected="item.select" :class="selectIndex == index ? 'Selected' : ''">

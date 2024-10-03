@@ -32,7 +32,7 @@ export default {
         font-weight: 400;
         letter-spacing: 0px;
         text-align: center;
-
+        cursor: pointer;
     }
     button:active{
         background: linear-gradient(-45.00deg,rgb(73, 101, 242), rgb(50, 152, 255));
