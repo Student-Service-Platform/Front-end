@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import CusInput from '@/ui/CusInput.vue';
+import CusButton from '@/ui/CusButton.vue';
 import AugmentedReality from "@/assets/AugmentedReality.png";
 import password from "@/assets/password.png";
 import user from "@/assets/user.png";
@@ -11,32 +12,29 @@ import PhoneNumber from "@/assets/PhoneNumber.png";
 <template>
     <div class="register">
         <h1 class="zhuce">注册</h1>
-        <div class="Rectange"></div>
-        <header>
-            <div class="input-container1">
-                <cus-input :path="AugmentedReality" content="请输入学号" required></cus-input>
-            </div>
-            <div class="input-container2">
-                <cus-input :path="user" content="请输入用户名" required></cus-input>
-            </div>
-            <div class="input-container3">
-                <cus-input :path="password" content="请输入密码" required></cus-input>
-            </div>
-            <div class="input-container4">
-                <cus-input :path="password" content="请再次输入密码" required></cus-input>
-            </div>
-            <div class="input-container5">
-                <cus-input :path="Mail" content="请输入邮箱" required></cus-input>
-            </div>
-            <div class="input-container6">
-                <cus-input :path="code" content="请输入验证码" required></cus-input>
-            </div>
-            <div class="input-container7">
-                <cus-input :path="PhoneNumber" content="请输入手机号" required></cus-input>
-            </div>
-            <button class="register-btn" type="button">注册</button>
-            <button class="code-btn" type="button">发送验证码</button>
-        </header>
+        <div class="input-container1">
+            <cus-input :path="AugmentedReality" content="请输入学号" required></cus-input>
+        </div>
+        <div class="input-container2">
+            <cus-input :path="user" content="请输入用户名" required></cus-input>
+        </div>
+        <div class="input-container3">
+            <cus-input :path="password" content="请输入密码" required></cus-input>
+        </div>
+        <div class="input-container4">
+            <cus-input :path="password" content="请再次输入密码" required></cus-input>
+        </div>
+        <div class="input-container5">
+            <cus-input :path="Mail" content="请输入邮箱" required></cus-input>
+        </div>
+        <div class="input-container6">
+            <cus-input :path="code" content="请输入验证码" required></cus-input>
+        </div>
+        <div class="input-container7">
+            <cus-input :path="PhoneNumber" content="请输入手机号" required></cus-input>
+        </div>
+        <cus-button class="register-btn" content="注册"></cus-button>
+        <cus-button class="code-btn" type="button" content="发送验证码"></cus-button>
     </div>
 </template>
 

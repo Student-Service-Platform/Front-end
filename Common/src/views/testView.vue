@@ -2,7 +2,7 @@
 此页仅作基础ui展示
 -->
 
-<script>
+<script setup>
   import CusBox from "@/ui/CusBox.vue";
   import CusButton from "@/ui/CusButton.vue";
   import CusButton2 from "@/ui/CusButton2.vue";
@@ -10,24 +10,7 @@
   import CusInput from "@/ui/CusInput.vue";
   import CusSwitch from "@/ui/CusSwitch.vue";
   import CusCheckbox from "@/ui/CusCheckbox.vue";
-  import User from "@/assets/User.png"
-
-export default {
-    components: {
-        CusBox,
-        CusButton,
-        CusButton2,
-        CusColumn,
-        CusInput,
-        CusSwitch,
-        CusCheckbox
-    },
-    data () {
-        return {
-            user:User
-        }
-    }
-}
+  import user from "@/assets/User.png"
 </script>
 
 <template>

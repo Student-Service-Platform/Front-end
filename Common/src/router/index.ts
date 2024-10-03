@@ -2,8 +2,7 @@
 // 我未作大量修改
 
 import { createRouter, createWebHistory } from 'vue-router'
-import { testView } from '@/views'
-import App from '@/App.vue'
+import { testView, RegisterView, LoginView } from '@/views'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,8 +12,12 @@ const router = createRouter({
       component: testView
     },
     {
+      path: "/reg",
+      component: RegisterView
+    },
+    {
       path: "/login",
-      component: testView
+      component: LoginView
     }
   ]
 })

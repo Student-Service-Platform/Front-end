@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CusInput from '@/ui/CusInput.vue';
 import Checkbox from '@/ui/CusCheckbox.vue';
+import CusButton from '@/ui/CusButton.vue';
 import AugmentedReality from "@/assets/AugmentedReality.png";
 import password from "@/assets/password.png";
 import code from "@/assets/code.png";
@@ -9,25 +10,22 @@ import code from "@/assets/code.png";
 <template>
     <div class="login">
         <h1 class="denglu">登录</h1>
-        <div class="Rectange189"></div>
-        <header>
-            <div class="input-container1">
-                <cus-input :path="AugmentedReality" content="请输入ID" required></cus-input>
-            </div>
-            <div class="input-container2">
-                <cus-input :path="password" content="请输入密码" required></cus-input>
-            </div>
-            <div class="input-container3">
-                <cus-input :path="code" content="请输入验证码" required></cus-input>
-            </div>
-            <div class="check-box">
-                <checkbox content="管理员"></checkbox>
-            </div>
-            <div class="little-words">
-            <p type="button" style="left:57%;">忘记密码</p>
-            </div>
-            <button class="login-btn" type="button">登录</button>
-        </header>
+        <div class="input-container1">
+            <cus-input :path="AugmentedReality" content="请输入ID" required></cus-input>
+        </div>
+        <div class="input-container2">
+            <cus-input :path="password" content="请输入密码" required></cus-input>
+        </div>
+        <div>
+            <cus-input class="input-container3" :path="code" content="请输入验证码" required></cus-input>
+        </div>
+        <div class="check-box">
+            <checkbox content="管理员"></checkbox>
+        </div>
+        <div class="little-words">
+        <p type="button" style="left:57%;">忘记密码</p>
+        </div>
+        <cus-button content="登录"></cus-button>
     </div>
 </template>
 
