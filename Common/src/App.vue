@@ -7,7 +7,7 @@
     <nav-bar :user="{userID:'1',userName:'test'}"></nav-bar>
   </header>
 
-  <RouterView style="position: absolute;top: 62px;"/>
+  <RouterView />
 </template>
 
 <style scoped>

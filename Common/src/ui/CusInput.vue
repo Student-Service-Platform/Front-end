@@ -8,7 +8,7 @@ Latest: 2024.10.2 17:04
 <template>
     <div>
         <img :src="path" /> 
-        <input :placeholder="content" />
+        <input :placeholder="content" :style="{ 'width': width ? width : '308px' }"/>
     </div>
 </template>
 
@@ -23,6 +23,7 @@ export default {
             default: err
         },
         content: String,
+        width: String
     }
 }
 </script>
@@ -38,7 +39,6 @@ height: 36px;
 border: 1px solid rgb(217, 217, 217);
 border-radius: 4px;
 box-sizing: border-box;
-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 padding-left: 48px;
 }
 img{

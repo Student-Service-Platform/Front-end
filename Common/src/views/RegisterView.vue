@@ -12,142 +12,60 @@ import PhoneNumber from "@/assets/PhoneNumber.png";
 <template>
     <div class="register">
         <h1 class="zhuce">注册</h1>
-        <div class="Rectange"></div>
-        <header>
-            <cus-input class="input-container1" :path="AugmentedReality" content="请输入学号" required></cus-input>
-
-            <cus-input class="input-container2" :path="user" content="请输入用户名" required></cus-input>
-
-            <cus-input class="input-container3" :path="password" content="请输入密码" required></cus-input>
-
-            <cus-input class="input-container4" :path="password" content="请再次输入密码" required></cus-input>
-
-            <cus-input class="input-container5" :path="Mail" content="请输入邮箱" required></cus-input>
-
-            <cus-input class="input-container6" :path="code" content="请输入验证码" required></cus-input>
-
-            <cus-input class="input-container7" :path="PhoneNumber" content="请输入手机号" required></cus-input>
-
-            <cus-button class="register-btn" content="注册"></cus-button>
-
-            <button class="code-btn" type="button">发送验证码</button>
-        </header>
+        <cus-input style="top:15%;" class="input" :path="AugmentedReality" content="请输入学号" required></cus-input>
+        <cus-input style="top:25%;" class="input" :path="user" content="请输入用户名" required></cus-input>
+        <cus-input style="top:35%;" class="input" :path="password" content="请输入密码" required></cus-input>
+        <cus-input style="top:45%;" class="input" :path="password" content="请再次输入密码" required></cus-input>
+        <cus-input style="top:55%;" class="input" :path="Mail" content="请输入邮箱" required></cus-input>
+        <cus-input style="top:65%;" class="input" :path="code" content="请输入验证码" width="200px" required></cus-input>
+        <cus-input style="top:75%;" class="input" :path="PhoneNumber" content="请输入手机号" required></cus-input>
+        <cus-button class="register-btn" content="注册"></cus-button>
+        <cus-button class="code-btn" content="发送验证码"></cus-button>
     </div>
 </template>
 <style>
 .register {
-    position: fixed;
-    top: 0;
-    left: 0; 
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-}
-div.Rectange {
+    border-radius: 16px;
+    background: rgb(255, 255, 255);
+    box-shadow: 2px 2px lightgray;
     z-index: 1;
     position: absolute;
     width: 430px;
     height: 500px;
     transform: translate(-50%, -50%);
-    top: 55%;
+    top: 50%;
     left: 50%;
-    border-radius: 16px;
-    background: rgb(255, 255, 255);
 }
 .zhuce {
-    z-index: 2;
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     left: 50%;
-    top: 33%;
-    color: rgb(0, 0, 0);
+    top: 10px;
     font-family: 阿里巴巴普惠体;
     font-size: 24px;
     font-weight: 550;
-    line-height: 33px;
     letter-spacing: 0%;
     text-align: center;
 }
-.input-container1 {
+.input {
     z-index: 3;
     position: absolute;
-    transform: translate(-50%, -50%);
-    left: 40.7%;
-    top: 38%;
-}
-.input-container2 {
-    z-index: 3;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 40.7%;
-    top: 43%;
-}
-.input-container3 {
-    z-index: 3;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 40.7%;
-    top: 48%;
-}
-.input-container4 {
-    z-index: 3;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 40.7%;
-    top: 53%;
-}
-.input-container5 {
-    z-index: 3;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 40.7%;
-    top:58%;
-}
-.input-container6 {
-    z-index: 3;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 40.7%;
-    top: 63%;
-}
-.input-container7 {
-    z-index: 3;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 40.7%;
-    top: 68%;
+    left: 61px;
 }
 .register-btn {
     z-index: 3;
     font-size: 16px;
     cursor: pointer;
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     left: 50%;
-    top: 75%;
+    top: 87%;
 }
 .code-btn {
+    width: 100px !important;
+    top: 65%;
     z-index: 3;
-    font-size: 16px;
-    color: rgb(255, 255, 255);
-    background: rgb(82, 176, 181);
-    border: none;
-    padding: 0;
-    width: 100px;
-    height: 30px;
-    border-radius: 5px;
-    cursor: pointer;
-    position: absolute;
-    left: 53%;
-    top: 58.4%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.code-btn:active{
-    background: rgb(66, 144, 148);
+    right: 61px;
+    
 }
 </style>

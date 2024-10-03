@@ -12,7 +12,7 @@ Latest: 2024.9.29 20:34
 <script>
 export default {
     props: {
-        content: String
+        content: String,
     }
 }
 </script>
