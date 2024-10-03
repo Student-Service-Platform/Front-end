@@ -21,7 +21,7 @@ const rows = Array(20).fill({
     <cus-column content="内容" :items="[
       {title: '反馈提交', select: () => {}}, 
       {title: '反馈记录', select: () => {}}
-    ]" :default="0"></cus-column>
+    ]" :default="1"></cus-column>
   </header>
 
   <!-- 右侧表格 -->
@@ -46,7 +46,7 @@ const rows = Array(20).fill({
       <cus-box :input="false" :content="row.anonymous" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
       <cus-box :input="false" :content="row.progress" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
       <cus-box :input="false" h="60px" w="129px" style="background-color: rgb(255, 255, 255);">
-        <cus-button2 content="查看"></cus-button2>
+        <cus-button2 content="查看" style="left:30.5px;top:19.3px;"></cus-button2>
       </cus-box>
      <!--
       使用button2按钮出现错乱

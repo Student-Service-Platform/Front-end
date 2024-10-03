@@ -30,7 +30,7 @@ const router = createRouter({
     },
     {
       name: "view",
-      path: "/feedback",
+      path: "/feedback/list",
       component: viewRecordList
     }
   ]
