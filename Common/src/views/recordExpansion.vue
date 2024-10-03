@@ -1,3 +1,4 @@
+
 <script>
   // 引入自定义组件和图片资源
   import CusBox from "@/ui/CusBox.vue"; // 自定义盒子组件，可以显示内容或输入框
@@ -48,7 +49,7 @@ export default {
 
     <!-- 第二行：是否紧急等 -->
     <div style="display: flex;">
-      <cus-box :input="false" content="紧急度 5 4 3 2 1 是否匿名 是否处理" h="60px" w="704px" :textAlign="['left', 'top']"></cus-box>
+      <cus-box :input="false" content="紧急度 5 4 3 2 1 是否匿名 是否处理" h="60px" w="845px" :textAlign="['left', 'top']"></cus-box>
     </div>
 
     <!-- 第三行：问题类别 -->
@@ -83,7 +84,7 @@ export default {
         <cus-box :input="false" content="请输入评价" h="96px" w="704px" :textAlign="['left', 'top']"></cus-box>
       </div>
     </div>
-
+    <cus-button content="提交评价" style="position: absolute; top: 670px; left: 268px;"></cus-button>
     <!-- 第八行：提交评价按钮 -->
     <!-- <div style="display: flex; justify-content: center; margin-top: 20px;">
       <cus-button2 content="提交评价"></cus-button2>
@@ -97,3 +98,4 @@ export default {
 <style scoped>
 /* 去除列与列之间的间隙 */
 </style>
+
