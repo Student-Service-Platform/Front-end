@@ -48,17 +48,6 @@ const rows = Array(20).fill({
       <cus-box :input="false" h="60px" w="129px" style="background-color: rgb(255, 255, 255);">
         <cus-button2 content="查看" style="left:30.5px;top:19.3px;"></cus-button2>
       </cus-box>
-     <!--
-      使用button2按钮出现错乱
-      尝试1：
-     <div style="width: 129px; display: flex; justify-content: center; align-items: center; background-color: rgb(255, 255, 255);">
-        <cus-button2 content="查看" /> 
-    </div>
-        尝试2：
-        <div style="position: relative; width: 129px;">
-        <cus-button2 content="查看" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></cus-button2>
-      </div>
-     --> 
       
     </div>
   </div>
