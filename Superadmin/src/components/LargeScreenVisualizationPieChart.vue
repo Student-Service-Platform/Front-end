@@ -62,7 +62,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #main1 {
   transform: translate(-50%, -50%);
   position: absolute;
