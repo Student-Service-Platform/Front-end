@@ -7,8 +7,9 @@ import CusButton2 from '@/ui/CusButton2.vue';
 
 // 模拟数据
 const rows = Array(20).fill({
-  number: "",
+
   id: "",
+  username: "",
   password: "",
   time: "",
   mail: "",
