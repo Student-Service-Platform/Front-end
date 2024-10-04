@@ -1,0 +1,12 @@
+/**
+ * Author: 杨龙辉
+ * Description: 设置储存
+ * CreatedAt: 2024.10.2 20:10
+ * Latest: 2024.10.2 20:10
+ */
+
+// 此Store用于保存config
+export const config = {
+  domain: '127.0.0.1:4523/m1/5195939-4861849-default',
+  https: false
+}

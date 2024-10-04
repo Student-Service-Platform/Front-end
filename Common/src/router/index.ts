@@ -2,38 +2,76 @@
 // 我未作大量修改
 
 import { createRouter, createWebHistory } from 'vue-router'
-import { testView, RegisterView, LoginView, recordExpansion, viewRecordList, postRecord,  } from '@/views'
+import {
+  testView,
+  RegisterView,
+  LoginView,
+  recordExpansion,
+  viewRecordList,
+  postRecord,
+  adminCenterView,
+  unprocessedFeedbackList,
+  processedFeedbackList,
+  spamFeedbackExpansion,
+  spamFeedbackList,
+  UserCenterView
+} from '@/views'
 import { loginGuard } from './guard'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      name: "index",
-      path: "/",
+      name: 'index',
+      path: '/',
       component: testView
     },
     {
-      name: "register",
-      path: "/reg",
+      name: 'register',
+      path: '/reg',
       component: RegisterView
     },
     {
-      name: "login",
-      path: "/login",
+      name: 'login',
+      path: '/login',
       component: LoginView
     },
     {
-      name: "record",
-      path: "/feedback/post",
-      component: postRecord,
+      name: 'user',
+      path: '/user',
+      component: UserCenterView
     },
     {
-      name: "view",
-      path: "/feedback/list",
+      name: 'record',
+      path: '/user/post',
+      component: postRecord
+    },
+    {
+      name: 'view',
+      path: '/user/list',
       component: viewRecordList
+    },
+    {
+      name: 'admincenter',
+      path: '/admin/',
+      component: adminCenterView
+    },
+    {
+      name: 'unprocessed',
+      path: '/admin/unprocessed',
+      component: unprocessedFeedbackList
+    },
+    {
+      name: 'processed',
+      path: '/admin/processed',
+      component: processedFeedbackList
+    },
+    {
+      name: 'spam',
+      path: '/admin/spam',
+      component: spamFeedbackList
     }
   ]
-})//.beforeEach(loginGuard)
+}) //.beforeEach(loginGuard)
 
 export default router

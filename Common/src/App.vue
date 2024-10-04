@@ -1,10 +1,10 @@
 <script setup lang="ts">
-  import navBar from "@/components/navBar.vue"
+import navBar from '@/components/navBar.vue'
 </script>
 
 <template>
   <header>
-    <nav-bar :user="{userID:'1',userName:'test'}"></nav-bar>
+    <nav-bar :user="{ userID: '1', userName: 'test' }"></nav-bar>
   </header>
 
   <RouterView />

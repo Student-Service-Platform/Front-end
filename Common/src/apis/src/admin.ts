@@ -5,7 +5,7 @@
  * Latest: 2024.10.3 15:03
  */
 
-import request from "../request"
+import request from '../request'
 
 /**
  * @description 管理员获取处理历史
@@ -13,8 +13,8 @@ import request from "../request"
  * @param limit 限制
  * @param offset 偏移
  */
-export const getHistory = (admin_id: string,limit: number,offset: number)=>{
-    return request.get(`admin/history?admin_id=${admin_id}&limit=${limit}&offset=${offset}`)
+export const getHistory = (admin_id: string, limit: number, offset: number) => {
+  return request.get(`admin/history?admin_id=${admin_id}&limit=${limit}&offset=${offset}`)
 }
 
 /**
@@ -23,17 +23,17 @@ export const getHistory = (admin_id: string,limit: number,offset: number)=>{
  * @param userID 修改者的学号/账号
  * @param value 修改的值
  */
-export const putAdminProfile = (name:string, userID:string ,value:string)=>{
-    return request.put("admin/profile/"+name,{
-        "user_id": userID,
-        value
-    })
+export const putAdminProfile = (name: string, userID: string, value: string) => {
+  return request.put('admin/profile/' + name, {
+    user_id: userID,
+    value
+  })
 }
 
 /**
  * @description 获取个人信息
  * @param userID 请求者的学号/账号
  */
-export const getProfile = (userID:string)=>{
-    return request.get("admin/profile?user_id="+userID)
+export const getProfile = (userID: string) => {
+  return request.get('admin/profile?user_id=' + userID)
 }

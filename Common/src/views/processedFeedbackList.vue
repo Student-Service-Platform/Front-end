@@ -1,3 +1,5 @@
+<!-- 普通管理员 已处理反馈列表 -->
+
 <script setup lang="ts">
 import CusBox from '@/ui/CusBox.vue' // 引入 CusBox 组件
 import CusColumn from '@/ui/CusColumn.vue' // 引入 CusColumn 组件
@@ -5,6 +7,8 @@ import CusButton2 from '@/ui/CusButton2.vue'
 
 // 模拟数据
 const rows = Array(20).fill({
+  number: '',
+  id: '',
   title: '',
   time: '',
   category: '',
@@ -21,11 +25,12 @@ const rows = Array(20).fill({
     <cus-column
       content="内容"
       :items="[
-        { title: '用户中心', to: { name: 'user' } },
-        { title: '反馈记录', to: { name: 'view' } },
-        { title: '反馈提交', to: { name: 'record' } }
+        { title: '个人中心', to: { name: 'admincenter' } },
+        { title: '未处理反馈', to: { name: 'unprocessed' } },
+        { title: '已处理反馈', to: { name: 'processed' } },
+        { title: '垃圾信息', to: { name: 'spam' } }
       ]"
-      :default="1"
+      :default="2"
     ></cus-column>
   </header>
 
@@ -33,6 +38,20 @@ const rows = Array(20).fill({
   <div style="position: absolute; left: 400px; top: 70px">
     <!-- 列头，包含“标题”到“操作” -->
     <div style="display: flex">
+      <cus-box
+        :input="false"
+        content="反馈序号"
+        h="60px"
+        w="129px"
+        :textAlign="['center', 'top']"
+      ></cus-box>
+      <cus-box
+        :input="false"
+        content="ID"
+        h="60px"
+        w="129px"
+        :textAlign="['center', 'top']"
+      ></cus-box>
       <cus-box
         :input="false"
         content="标题"
@@ -56,7 +75,7 @@ const rows = Array(20).fill({
       ></cus-box>
       <cus-box
         :input="false"
-        content="是否紧急"
+        content="紧急度"
         h="60px"
         w="129px"
         :textAlign="['center', 'top']"
@@ -64,13 +83,6 @@ const rows = Array(20).fill({
       <cus-box
         :input="false"
         content="是否匿名"
-        h="60px"
-        w="129px"
-        :textAlign="['center', 'top']"
-      ></cus-box>
-      <cus-box
-        :input="false"
-        content="处理进度"
         h="60px"
         w="129px"
         :textAlign="['center', 'top']"
@@ -86,6 +98,22 @@ const rows = Array(20).fill({
 
     <!-- 生成20行数据 -->
     <div v-for="(row, index) in rows" :key="index" style="display: flex">
+      <cus-box
+        :input="false"
+        :content="row.number"
+        h="60px"
+        w="129px"
+        :textAlign="['center', 'top']"
+        style="background-color: rgb(255, 255, 255)"
+      ></cus-box>
+      <cus-box
+        :input="false"
+        :content="row.id"
+        h="60px"
+        w="129px"
+        :textAlign="['center', 'top']"
+        style="background-color: rgb(255, 255, 255)"
+      ></cus-box>
       <cus-box
         :input="false"
         :content="row.title"
@@ -121,14 +149,6 @@ const rows = Array(20).fill({
       <cus-box
         :input="false"
         :content="row.anonymous"
-        h="60px"
-        w="129px"
-        :textAlign="['center', 'top']"
-        style="background-color: rgb(255, 255, 255)"
-      ></cus-box>
-      <cus-box
-        :input="false"
-        :content="row.progress"
         h="60px"
         w="129px"
         :textAlign="['center', 'top']"

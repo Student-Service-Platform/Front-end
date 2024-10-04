@@ -5,27 +5,28 @@
  * Latest: 2024.10.2 20:58
  */
 
-import axios from "axios";
-import type { AxiosInstance } from "axios";
-import { useConfigStore } from "@/stores";
+import axios from 'axios'
+import type { AxiosInstance } from 'axios'
+import { config } from '@/config'
 
-const config = useConfigStore()
-
-const baseURL = config.domain ? `http${config.https ? 's' : ''}://${config.domain}` : '';
+const baseURL = config.domain ? `http${config.https ? 's' : ''}://${config.domain}` : ''
 
 const service: AxiosInstance = axios.create({
-    baseURL: `${baseURL}/api/`,
-    timeout: 5000,
-    headers: {
-        Authorization: localStorage.getItem("token") // 添加认证
-    },
-});
+  baseURL: `${baseURL}/api/`,
+  timeout: 5000,
+  headers: {
+    Authorization: localStorage.getItem('token') || '' // 添加认证
+  }
+})
 
 //响应拦截器
-service.interceptors.response.use((res) => {
-    return Promise.resolve(res);
-}, (error) => {
-    return Promise.reject(error);
-});
+service.interceptors.response.use(
+  (res) => {
+    return Promise.resolve(res)
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
 
-export default service;
+export default service

@@ -22,107 +22,107 @@ Args:
 -->
 
 <template>
-    <div :style="{width:w,height:h}">
-        <textarea v-if="input" :placeholder="content"></textarea>
-        <p v-else-if="content" :class="textAlign">{{ content }}</p>
-        <slot></slot>
-    </div>
+  <div :style="{ width: w, height: h }">
+    <textarea v-if="input" :placeholder="content"></textarea>
+    <p v-else-if="content" :class="textAlign">{{ content }}</p>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
 export default {
-    props:{
-        input: {
-            type: Boolean,
-            default: false
-        },
-        content: {
-            type: String,
-            required: false
-        },
-        h: {
-            type: String,
-            default: "200px"
-        },
-        w: {
-            type: String,
-            default: "200px"
-        },
-        textAlign: Array
-    }
+  props: {
+    input: {
+      type: Boolean,
+      default: false
+    },
+    content: {
+      type: String,
+      required: false
+    },
+    h: {
+      type: String,
+      default: '200px'
+    },
+    w: {
+      type: String,
+      default: '200px'
+    },
+    textAlign: Array
+  }
 }
 </script>
 
 <style scoped>
-    div{
-        margin: 0;
-        padding: 0;
-        position: relative;
-        background: rgb(246, 246, 246);
-        border: 1px solid rgb(220, 220, 220);
-        box-sizing: border-box;
-    }
-    div>*{
-        margin: 0;
-        padding: 0;
-        border-radius: 0;
-        border-width: 2px;
-        border-color: #DCDCDC;
-    }
-    p{
-        user-select: none;
-        position: absolute;
-        display: block;
-        color: rgb(82, 82, 82);
-        font-family: Inter;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 20px;
-        text-align: left;
-    }
-    textarea{
-        width: 100%;
-        height: 100%;
-        border: none;
-        margin: 0;
-        resize: none;
-    }
+div {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background: rgb(246, 246, 246);
+  border: 1px solid rgb(220, 220, 220);
+  box-sizing: border-box;
+}
+div > * {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border-width: 2px;
+  border-color: #dcdcdc;
+}
+p {
+  user-select: none;
+  position: absolute;
+  display: block;
+  color: rgb(82, 82, 82);
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+}
+textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  margin: 0;
+  resize: none;
+}
 
-    .left{
-        left: 0;
-    }
-    .right{
-        right: 0;
-    }
-    .top{
-        top: 0;
-    }
-    .bottom{
-        bottom: 0;
-    }
-    .center{
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-    }
-    .centerL{
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    .centerT{
-        left: 50%;
-        top: 0;
-        transform: translateX(-50%);
-    }
-    .centerR{
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    .centerB{
-        left: 50%;
-        bottom: 0;
-        transform: translateX(-50%);
-    }
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
+}
+.top {
+  top: 0;
+}
+.bottom {
+  bottom: 0;
+}
+.center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.centerL {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.centerT {
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+.centerR {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.centerB {
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
 </style>

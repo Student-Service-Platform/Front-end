@@ -5,7 +5,7 @@
  * latest: 2024.10.2 21:00
  */
 
-import request from "../request";
+import request from '../request'
 
 /**
  * @description 修改个人主页
@@ -13,19 +13,19 @@ import request from "../request";
  * @param userID 修改者的学号/账号
  * @param value 修改的值
  */
-export const putProfile = (name:string, userID:string ,value:string)=>{
-    return request.put("user/profile/"+name,{
-        "user_id": userID,
-        value
-    })
+export const putProfile = (name: string, userID: string, value: string) => {
+  return request.put('user/profile/' + name, {
+    user_id: userID,
+    value
+  })
 }
 
 /**
  * @description 获取个人信息
  * @param userID 请求者的学号/账号
  */
-export const getProfile = (userID:string)=>{
-    return request.get("user/profile?user_id="+userID)
+export const getProfile = (userID: string) => {
+  return request.get('user/profile?user_id=' + userID)
 }
 
 /**
@@ -33,8 +33,8 @@ export const getProfile = (userID:string)=>{
  * @param limit 限制获取的条数
  * @param offset 偏移量
  */
-export const getProfeedbacks = (limit:number, offset:number)=>{
-    return request.get(`user/profile?limit=${limit}&offset=${offset}`)
+export const getProfeedbacks = (limit: number, offset: number) => {
+  return request.get(`user/profile?limit=${limit}&offset=${offset}`)
 }
 
 /**
@@ -48,22 +48,23 @@ export const getProfeedbacks = (limit:number, offset:number)=>{
  *      description: string
  */
 export const postFeedback = (
-    userID:string, 
-    post: {
-        title: string,
-        category: number,
-        is_urgent: boolean,
-        if_anonymous: boolean,
-        description: string
-    })=>{
-    return request.post("user/",{
-        "student_id": userID,
-        "title": post.title,
-        "category": post.category,
-        "is_urgent": post.is_urgent,
-        "if_anonymous": post.if_anonymous,
-        "description": post.description
-    })
+  userID: string,
+  post: {
+    title: string
+    category: number
+    is_urgent: boolean
+    if_anonymous: boolean
+    description: string
+  }
+) => {
+  return request.post('user/', {
+    student_id: userID,
+    title: post.title,
+    category: post.category,
+    is_urgent: post.is_urgent,
+    if_anonymous: post.if_anonymous,
+    description: post.description
+  })
 }
 
 /**
@@ -71,10 +72,9 @@ export const postFeedback = (
  * @param requestID 反馈的id
  * @param grade 给出的评价分
  */
-export const postRate = (requestID:number, grade:number)=>{
-    return request.post("user/rate",{
-        "request_id": requestID,
-        grade
-    })
+export const postRate = (requestID: number, grade: number) => {
+  return request.post('user/rate', {
+    request_id: requestID,
+    grade
+  })
 }
-

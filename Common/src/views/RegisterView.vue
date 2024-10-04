@@ -1,71 +1,130 @@
-<script setup lang="ts">
-import CusInput from '@/ui/CusInput.vue';
-import CusButton from '@/ui/CusButton.vue';
-import AugmentedReality from "@/assets/AugmentedReality.png";
-import password from "@/assets/password.png";
-import user from "@/assets/user.png";
-import Mail from "@/assets/Mail.png";
-import code from "@/assets/code.png";
-import PhoneNumber from "@/assets/PhoneNumber.png";
+<script lang="ts">
+import CusInput from '@/ui/CusInput.vue'
+import CusButton from '@/ui/CusButton.vue'
+import AugmentedReality from '@/assets/AugmentedReality.png'
+import password from '@/assets/password.png'
+import user from '@/assets/user.png'
+import Mail from '@/assets/Mail.png'
+import code from '@/assets/code.png'
+import PhoneNumber from '@/assets/PhoneNumber.png'
+
+export default {
+  data() {
+    return {
+      AugmentedReality,
+      password,
+      user,
+      Mail,
+      code,
+      PhoneNumber
+    }
+  },
+  components: {
+    CusButton,
+    CusInput
+  }
+}
 </script>
 
 <template>
-    <div class="register">
-        <h1 class="zhuce">注册</h1>
-        <cus-input style="top:15%;" class="input" :path="AugmentedReality" content="请输入学号" required></cus-input>
-        <cus-input style="top:25%;" class="input" :path="user" content="请输入用户名" required></cus-input>
-        <cus-input style="top:35%;" class="input" :path="password" content="请输入密码" required></cus-input>
-        <cus-input style="top:45%;" class="input" :path="password" content="请再次输入密码" required></cus-input>
-        <cus-input style="top:55%;" class="input" :path="Mail" content="请输入邮箱" required></cus-input>
-        <cus-input style="top:65%;" class="input" :path="code" content="请输入验证码" width="200px" required></cus-input>
-        <cus-input style="top:75%;" class="input" :path="PhoneNumber" content="请输入手机号" required></cus-input>
-        <cus-button class="register-btn" content="注册"></cus-button>
-        <cus-button class="code-btn" content="发送验证码"></cus-button>
-    </div>
+  <div class="register">
+    <h1 class="zhuce">注册</h1>
+    <cus-input
+      style="top: 15%"
+      class="input"
+      :path="AugmentedReality"
+      content="请输入学号"
+      required
+    ></cus-input>
+    <cus-input
+      style="top: 25%"
+      class="input"
+      :path="user"
+      content="请输入用户名"
+      required
+    ></cus-input>
+    <cus-input
+      style="top: 35%"
+      class="input"
+      :path="password"
+      content="请输入密码"
+      required
+    ></cus-input>
+    <cus-input
+      style="top: 45%"
+      class="input"
+      :path="password"
+      content="请再次输入密码"
+      required
+    ></cus-input>
+    <cus-input
+      style="top: 55%"
+      class="input"
+      :path="Mail"
+      content="请输入邮箱"
+      required
+    ></cus-input>
+    <cus-input
+      style="top: 65%"
+      class="input"
+      :path="code"
+      content="请输入验证码"
+      width="200px"
+      required
+    ></cus-input>
+    <cus-input
+      style="top: 75%"
+      class="input"
+      :path="PhoneNumber"
+      content="请输入手机号"
+      required
+    ></cus-input>
+    <cus-button class="register-btn" content="注册"></cus-button>
+    <cus-button class="code-btn" content="发送验证码"></cus-button>
+  </div>
 </template>
 <style>
 .register {
-    border-radius: 16px;
-    background: rgb(255, 255, 255);
-    box-shadow: 2px 2px lightgray;
-    z-index: 1;
-    position: absolute;
-    width: 430px;
-    height: 500px;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+  border-radius: 16px;
+  background: rgb(255, 255, 255);
+  box-shadow: 2px 2px lightgray;
+  z-index: 1;
+  position: absolute;
+  width: 430px;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 }
 .zhuce {
-    position: absolute;
-    transform: translateX(-50%);
-    left: 50%;
-    top: 10px;
-    font-family: 阿里巴巴普惠体;
-    font-size: 24px;
-    font-weight: 550;
-    letter-spacing: 0%;
-    text-align: center;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  top: 10px;
+  font-family: 阿里巴巴普惠体;
+  font-size: 24px;
+  font-weight: 550;
+  letter-spacing: 0%;
+  text-align: center;
 }
 .input {
-    z-index: 3;
-    position: absolute;
-    left: 61px;
+  z-index: 3;
+  position: absolute;
+  left: 61px;
 }
 .register-btn {
-    z-index: 3;
-    font-size: 16px;
-    cursor: pointer;
-    position: absolute;
-    transform: translateX(-50%);
-    left: 50%;
-    top: 87%;
+  z-index: 3;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  top: 87%;
 }
 .code-btn {
-    width: 100px !important;
-    top: 65%;
-    z-index: 3;
-    right: 61px;
-    
+  width: 100px !important;
+  top: 65%;
+  z-index: 3;
+  right: 61px;
 }
 </style>
