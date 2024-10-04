@@ -1,4 +1,4 @@
-<!-- 普通管理员 垃圾信息列表 -->
+<!-- 超级管理员 未处理反馈列表 -->
 
 <script setup lang="ts">
 import CusBox from '@/ui/CusBox.vue';         // 引入 CusBox 组件
