@@ -1,6 +1,4 @@
-<!--style标签未加scoped，类型名特殊，否则不知道怎么使用户ID不可修改-->
-
-<script setup lang="ts">
+<script lang="ts">
 import CusInput from '@/ui/CusInput.vue'
 import CusButton from '@/ui/CusButton.vue'
 import CusColumn from '@/ui/CusColumn.vue'
@@ -9,6 +7,64 @@ import password from '@/assets/password.png'
 import user from '@/assets/user.png'
 import Mail from '@/assets/Mail.png'
 import PhoneNumber from '@/assets/PhoneNumber.png'
+import { getProfile, putProfile } from '@/apis/src/user'
+import { onBeforeMount, ref } from 'vue'
+
+export default {
+   components: {
+    CusButton,
+    CusColumn,
+    CusInput,
+   },
+   data() {
+    return {
+      AugmentedReality,
+      password,
+      user,
+      Mail,
+      PhoneNumber,
+      data: {
+        user_id: "",
+        name: "",
+        phone: "",
+        mail: ""
+      },
+      loading: true,
+      origin:{
+        user_id: "",
+        name: "",
+        phone: "",
+        mail: ""
+      },
+      pwd: ""
+    }
+   },
+   mounted() {
+       getProfile("123").then(res=>{
+        this.data.mail = res.data.data.mail
+        this.data.name = res.data.data.name
+        this.data.user_id = res.data.data.user_id
+        this.data.phone = res.data.data.phone
+        this.origin.mail = res.data.data.mail
+        this.origin.name = res.data.data.name
+        this.origin.user_id = res.data.data.user_id
+        this.origin.phone = res.data.data.phone
+        this.loading = false
+       })  
+   },
+   methods:{
+    saveProfile() {
+      if(this.data.name!=this.origin.name)
+        putProfile("username",this.data.name).then(res=>{alert(res.data.msg)})
+      if(this.data.phone!=this.origin.phone)
+        putProfile("phone",this.data.phone).then(res=>{alert(res.data.msg)})
+      if(this.data.mail!=this.origin.mail)
+        putProfile("mail",this.data.mail).then(res=>{alert(res.data.msg)})
+      if(this.pwd != "")
+        putProfile("password",this.pwd).then(res=>{alert(res.data.msg)})
+    }
+   }
+}
 </script>
 
 <template>
@@ -23,13 +79,17 @@ import PhoneNumber from '@/assets/PhoneNumber.png'
       :default="0"
     ></cus-column>
   </header>
-  <div class="UserCenter">
+  <div class="UserCenter" v-if="loading">
+    <h1 class="jntm">加载中。。。。</h1>
+  </div>
+  <div class="UserCenter" v-else>
     <h1 class="jntm">用户中心</h1>
     <cus-input
       style="top: 23%"
       class="inputjntm disabled-input"
       :path="AugmentedReality"
       content="用户ID"
+      v-model="data.user_id"
       required
     ></cus-input>
     <cus-input
@@ -37,6 +97,7 @@ import PhoneNumber from '@/assets/PhoneNumber.png'
       class="inputjntm"
       :path="user"
       content="请更改用户名"
+      v-model="data.name"
       required
     ></cus-input>
     <cus-input
@@ -44,6 +105,7 @@ import PhoneNumber from '@/assets/PhoneNumber.png'
       class="inputjntm"
       :path="password"
       content="请更改密码"
+      v-model="pwd"
       required
     ></cus-input>
     <cus-input
@@ -51,6 +113,7 @@ import PhoneNumber from '@/assets/PhoneNumber.png'
       class="inputjntm"
       :path="Mail"
       content="请更改邮箱"
+      v-model="data.mail"
       required
     ></cus-input>
     <cus-input
@@ -58,9 +121,10 @@ import PhoneNumber from '@/assets/PhoneNumber.png'
       class="inputjntm"
       :path="PhoneNumber"
       content="请更改手机号"
+      v-model="data.phone"
       required
     ></cus-input>
-    <cus-button class="save-btn-jntm" content="保存更改"></cus-button>
+    <cus-button class="save-btn-jntm" content="保存更改" :click="saveProfile"></cus-button>
   </div>
 </template>
 
