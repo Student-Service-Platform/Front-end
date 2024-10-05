@@ -31,4 +31,9 @@ export const delAdmin = (userID: String) => {
   return request.delete(`superadmin/deluser?admin_id=${userID}`)
 }
 
-// export const
+export const reviewFeedback = (request_id: number, if_rubbish :number) => {
+    return request.post('superadmin',{
+        request_id,
+        if_rubbish
+    })
+}
