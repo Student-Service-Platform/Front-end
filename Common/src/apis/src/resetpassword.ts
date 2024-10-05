@@ -1,3 +1,5 @@
+import request from '../request'
+
 export const resetpwd = 
 (
     student_id: string,
