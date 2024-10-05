@@ -37,3 +37,11 @@ export const putAdminProfile = (name: string, userID: string, value: string) => 
 export const getProfile = (userID: string) => {
   return request.get('admin/profile?user_id=' + userID)
 }
+
+/**
+ * @description 获取反馈
+ * @param admin_id 反馈序号
+ */
+export const getfeedbacks = (code: string) => {
+  return request.get('admin/?code_id=' +code)
+}
