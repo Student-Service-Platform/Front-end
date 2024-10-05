@@ -1,4 +1,4 @@
-<!--发送验证码不会写-->
+<!--发送验证码没写-->
 <script lang="ts">
 import CusInput from '@/ui/CusInput.vue'
 import CusButton from '@/ui/CusButton.vue'
@@ -8,7 +8,7 @@ import user from '@/assets/user.png'
 import Mail from '@/assets/Mail.png'
 import code from '@/assets/code.png'
 import PhoneNumber from '@/assets/PhoneNumber.png'
-import { authRegister } from '@/apis/src/auth';
+import { authRegister } from '@/apis/request';
 
 export default {
   data() {
@@ -25,7 +25,8 @@ export default {
       confirmPassword: '',  // 确认密码
       email: '',            // 邮箱
       verificationCode: '', // 验证码
-      phoneNumber: ''       // 手机号
+      phoneNumber: '',      // 手机号
+      authRegister
     };
   },
   components: {
@@ -38,7 +39,6 @@ export default {
         alert("两次输入的密码不一致");
         return;
       }
-        
       try {
         const response = await authRegister(this.userId, this.username, this.passwordInput, true, this.phoneNumber);
         alert("注册成功！用户名："+ response.data.username);
@@ -51,7 +51,6 @@ export default {
   }
 };
 </script>
-
 <template>
   <div class="register">
     <h1 class="zhuce">注册</h1>
@@ -60,55 +59,72 @@ export default {
       class="input"
       :path="AugmentedReality"
       content="请输入学号"
+      v-model="userId"
       required
     ></cus-input>
+    
     <cus-input
       style="top: 25%"
       class="input"
       :path="user"
       content="请输入用户名"
+      v-model="username"
       required
     ></cus-input>
+    
     <cus-input
       style="top: 35%"
       class="input"
       :path="password"
       content="请输入密码"
+      v-model="passwordInput"
+      type="password"
       required
     ></cus-input>
+    
     <cus-input
       style="top: 45%"
       class="input"
       :path="password"
       content="请再次输入密码"
+      v-model="confirmPassword"
+      type="password"
       required
     ></cus-input>
+    
     <cus-input
       style="top: 55%"
       class="input"
       :path="Mail"
       content="请输入邮箱"
+      v-model="email"
       required
     ></cus-input>
+    
     <cus-input
       style="top: 65%"
       class="input"
       :path="code"
       content="请输入验证码"
+      v-model="verificationCode"
       width="200px"
       required
     ></cus-input>
+    
     <cus-input
       style="top: 75%"
       class="input"
       :path="PhoneNumber"
       content="请输入手机号"
+      v-model="phoneNumber"
       required
     ></cus-input>
-    <cus-button class="register-btn" content="注册"></cus-button>
+    
+    <cus-button class="register-btn" content="注册" @click="register"></cus-button>
     <cus-button class="code-btn" content="发送验证码"></cus-button>
   </div>
 </template>
+
 <style scoped>
 .register {
   border-radius: 16px;
