@@ -1,3 +1,4 @@
+<!--发送验证码不会写-->
 <script lang="ts">
 import CusInput from '@/ui/CusInput.vue'
 import CusButton from '@/ui/CusButton.vue'
@@ -7,6 +8,7 @@ import user from '@/assets/user.png'
 import Mail from '@/assets/Mail.png'
 import code from '@/assets/code.png'
 import PhoneNumber from '@/assets/PhoneNumber.png'
+import { authRegister } from '@/apis/request';
 
 export default {
   data() {
@@ -16,14 +18,38 @@ export default {
       user,
       Mail,
       code,
-      PhoneNumber
-    }
+      PhoneNumber,
+      userId: '',           // 学号
+      username: '',         // 用户名
+      passwordInput: '',    // 密码
+      confirmPassword: '',  // 确认密码
+      email: '',            // 邮箱
+      verificationCode: '', // 验证码
+      phoneNumber: ''       // 手机号
+    };
   },
   components: {
     CusButton,
     CusInput
+  },
+  methods: {
+    async register() {
+      if (this.passwordInput !== this.confirmPassword) {
+        alert("两次输入的密码不一致");
+        return;
+      }
+        
+      try {
+        const response = await authRegister(this.userId, this.username, this.passwordInput, true, this.phoneNumber);
+        alert("注册成功！用户名："+ response.data.username);
+      } 
+      catch (error) {
+        alert("注册失败，请检查输入的信息。");
+        console.error(error);
+      }
+    }
   }
-}
+};
 </script>
 
 <template>
@@ -83,7 +109,7 @@ export default {
     <cus-button class="code-btn" content="发送验证码"></cus-button>
   </div>
 </template>
-<style>
+<style scoped>
 .register {
   border-radius: 16px;
   background: rgb(255, 255, 255);
