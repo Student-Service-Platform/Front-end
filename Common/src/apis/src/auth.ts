@@ -31,3 +31,21 @@ export const authAdmin = (username: string, password: string) => {
   })
   // cookie处理与页面跳转由后端完成
 }
+
+/**
+ * @description 注册
+ * @param user_id 学号
+ * @param username 用户名
+ * @param password 密码
+ * @param mail_auth 邮箱
+ * @param phone 手机号码
+ */
+export const authRegister = (user_id: string,username: string,password: string,mail_auth: boolean,phone: string) => {
+    return request.post('auth/reg', {
+      user_id,
+      username,
+      password,
+      mail_auth,
+      phone
+    })
+  }
