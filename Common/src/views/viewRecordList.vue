@@ -50,7 +50,8 @@ onMounted(() => {
       <cus-box :input="false" content="时间" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
       <cus-box :input="false" content="问题类别" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
       <cus-box :input="false" content="紧急度" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
-      <cus-box :input="false" content="是否匿名" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" content="是否匿名" h="60px" w="115px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" content="是否处理" h="60px" w="115px" :textAlign="['center', 'top']"></cus-box>
       <cus-box :input="false" content="操作" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
     </div>
 
@@ -63,7 +64,8 @@ onMounted(() => {
       <cus-box :input="false" :content="row.update_at" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
       <cus-box :input="false" :content="row.category" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
       <cus-box :input="false" :content="row.urgency" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
-      <cus-box :input="false" :content="row.if_anonymous ? '是' : '否'" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" :content="row.if_anonymous ? '是' : '否'" h="60px" w="115px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" :content="row.status? '是' : '否'" h="60px" w="115px" :textAlign="['center', 'top']"></cus-box>
       <cus-box :input="false" h="60px" w="129px">
         <cus-button2 content="查看" style="left:30.5px;top:19.3px;"></cus-button2>
       </cus-box>
