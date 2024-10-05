@@ -23,13 +23,15 @@ Args:
 
 <template>
   <div :style="{ width: w, height: h }">
-    <textarea v-if="input" :placeholder="content"></textarea>
+    <textarea v-if="input" :placeholder="content" v-model="val"></textarea>
     <p v-else-if="content" :class="textAlign">{{ content }}</p>
     <slot></slot>
   </div>
 </template>
 
 <script>
+import { ref, watch } from 'vue'
+
 export default {
   props: {
     input: {
@@ -48,7 +50,20 @@ export default {
       type: String,
       default: '200px'
     },
-    textAlign: Array
+    textAlign: Array,
+    modelValue: String
+  },
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const val = ref(props.modelValue)
+    watch(
+      () => val.value,
+      (data) => emit('update:modelValue', data)
+    )
+
+    return {
+      val
+    }
   }
 }
 </script>

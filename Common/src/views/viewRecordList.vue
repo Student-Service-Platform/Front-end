@@ -29,7 +29,7 @@ const rows = Array(20).fill({
         { title: '反馈记录', to: { name: 'view' } },
         { title: '反馈提交', to: { name: 'record' } }
       ]"
-      :default="2"
+      :default="1"
     ></cus-column>
   </header>
 

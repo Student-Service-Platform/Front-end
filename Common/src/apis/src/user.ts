@@ -57,7 +57,7 @@ export const postFeedback = (
     description: string
   }
 ) => {
-  return request.post('user/', {
+  return request.post('user/feedback', {
     student_id: userID,
     title: post.title,
     category: post.category,

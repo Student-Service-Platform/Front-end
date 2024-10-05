@@ -8,18 +8,33 @@ Latest: 2024.9.29 20:59
 <template>
   <div>
     <span>{{ content }}</span>
-    <input type="checkbox" v-model="checked" />
+    <input type="checkbox" v-model="val" />
   </div>
 </template>
 
 <script>
+import { ref, watch } from 'vue'
+
 export default {
   props: {
-    content: String
+    content: String,
+    modelValue: String
   },
   data() {
     return {
       checked: false
+    }
+  },
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const val = ref(props.modelValue)
+    watch(
+      () => val.value,
+      (data) => emit('update:modelValue', data)
+    )
+
+    return {
+      val
     }
   }
 }

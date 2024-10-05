@@ -21,10 +21,10 @@ Arg:
       v-if="radio"
       type="checkbox"
       :disabled="readonly"
-      :checked="group == value"
+      :checked="selected"
       @click="$emit('update:group', value)"
     />
-    <input v-else type="checkbox" :disabled="readonly" v-model="check" />
+    <input v-else type="checkbox" :disabled="readonly" v-model="check"/>
     <span>{{ content }}</span>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
     content: String,
     radio: {
       type: Boolean,
-      defalut: true
+      default: true
     },
     readonly: {
       type: Boolean,
@@ -57,6 +57,13 @@ export default {
     )
     return {
       check
+    }
+  },
+  computed:{
+    selected: {
+      get() {
+        return this.group == this.value
+      }
     }
   }
 }

@@ -6,12 +6,10 @@
 // 引入自定义组件和图片资源
 import CusBox from '@/ui/CusBox.vue' // 自定义盒子组件，用于显示内容或输入框
 import CusButton from '@/ui/CusButton.vue' // 自定义按钮组件
-import CusInput from '@/ui/CusInput.vue'
 import CusColumn from '@/ui/CusColumn.vue' // 自定义列组件，显示选项菜单
 import CusCheckbox from '@/ui/CusCheckbox.vue' // 自定义复选框组件
 import CusSwitch from '@/ui/CusSwitch.vue' // 自定义开关组件
 import User from '@/assets/User.png' // 用户图片
-import { ref } from 'vue' // 引入ref函数用于定义响应式数据
 import { postFeedback } from '@/apis/src/user' // 引入提交反馈的API方法
 
 export default {
@@ -27,12 +25,12 @@ export default {
     // 定义响应式数据，用于绑定到输入框和表单元素
     return {
       user: User, // 用户图片
-      category: ref(0), // 反馈类别，默认值为0
-      // categoryChecked: [false, false, false, false, false, false],
-      title: ref(''), // 反馈标题
-      description: ref(''), // 反馈描述
-      isUrgent: ref(false), // 是否为紧急反馈
-      isAnonymous: ref(false) // 是否匿名
+      category: 0, // 反馈类别，默认值为0
+      title: '', // 反馈标题
+      description: '', // 反馈描述
+      isUrgent: false, // 是否为紧急反馈
+      isAnonymous: false, // 是否匿名
+      postFeedback
     }
   },
   methods: {
@@ -56,24 +54,17 @@ export default {
         description: this.description // 反馈描述
       };
       
-      updateCategory(index: number) {
-      // 重置所有复选框状态，只有当前点击的复选框保持选中
-      this.categoryChecked = this.categoryChecked.map((_, i) => i === index);
-      // 设置 category 为选中的索引
-      this.category = index;
-    }
       try {
         // 调用API提交反馈
         const response = await postFeedback('userID', postData); // 假设你有userID
 
         // 检查响应状态，如果提交成功，提示用户
-        if (response.status === 200) {
+        if (response.data.code === 200200) {
           alert('反馈提交成功！');
-          // 清空表单数据，准备下一个反馈
-          this.title = '';
-          this.description = '';
-          this.isUrgent = false;
-          this.isAnonymous = false;
+          // 跳转反馈列表
+          this.$router.push({name:"view"})
+        } else {
+          alert(response.data.msg)
         }
       } catch (error) {
         // 处理提交失败的情况
@@ -136,19 +127,12 @@ export default {
       <cus-box :input="false" h="60px" w="704px" :textAlign="['left', 'top']">
         <div class="info">
           <!-- 类别复选框 -->
-          <CusCheckbox style="left: 2%" content="学术与课程" :value="0" v-model="category"></CusCheckbox>
-          <CusCheckbox style="left: 19%" content="财务与奖学金" :value="1" v-model="category"></CusCheckbox>
-          <CusCheckbox style="left: 38%" content="餐饮与住宿" :value="2" v-model="category"></CusCheckbox>
-          <CusCheckbox style="left: 56%" content="技术与设施" :value="3" v-model="category"></CusCheckbox>
-          <CusCheckbox style="left: 73%" content="安全与行政" :value="4" v-model="category"></CusCheckbox>
-          <CusCheckbox style="left: 90%" content="其他" :value="5" v-model="category"></CusCheckbox>
-          <!-- <CusCheckbox style="left: 2%" content="学术与课程" v-model="categoryChecked[0]" @change="updateCategory(0)"></CusCheckbox>
-        <CusCheckbox style="left: 19%" content="财务与奖学金" v-model="categoryChecked[1]" @change="updateCategory(1)"></CusCheckbox>
-        <CusCheckbox style="left: 38%" content="餐饮与住宿" v-model="categoryChecked[2]" @change="updateCategory(2)"></CusCheckbox>
-        <CusCheckbox style="left: 56%" content="技术与设施" v-model="categoryChecked[3]" @change="updateCategory(3)"></CusCheckbox>
-        <CusCheckbox style="left: 73%" content="安全与行政" v-model="categoryChecked[4]" @change="updateCategory(4)"></CusCheckbox>
-        <CusCheckbox style="left: 90%" content="其他" v-model="categoryChecked[5]" @change="updateCategory(5)"></CusCheckbox> -->
-     
+          <CusCheckbox style="left: 2%" content="学术与课程" :value="0" v-model:group="category"></CusCheckbox>
+          <CusCheckbox style="left: 19%" content="财务与奖学金" :value="1" v-model:group="category"></CusCheckbox>
+          <CusCheckbox style="left: 38%" content="餐饮与住宿" :value="2" v-model:group="category"></CusCheckbox>
+          <CusCheckbox style="left: 56%" content="技术与设施" :value="3" v-model:group="category"></CusCheckbox>
+          <CusCheckbox style="left: 73%" content="安全与行政" :value="4" v-model:group="category"></CusCheckbox>
+          <CusCheckbox style="left: 90%" content="其他" :value="5" v-model:group="category"></CusCheckbox>
         </div>
       </cus-box>
     </div>
