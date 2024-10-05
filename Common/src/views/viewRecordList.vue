@@ -8,11 +8,11 @@ import { getProfeedbacks } from '@/apis/src/user';  // 引入封装的 API 方�
 // 定义 rows 数组来存储获取到的反馈数据
 const rows = ref<Array<any>>([]);  // 使用 ref 来响应式存储数据
 const code = ref<number>(0);       // 用于存储反馈序号
-
+const user_id=123;
 // 定义获取反馈数据的函数
 const fetchFeedbacks = async () => {
   try {
-    const response = await getProfeedbacks(20, 0);  
+    const response = await getProfeedbacks(user_id,20, 0);  
     // 假设 response.data 是包含反馈信息的数组
     rows.value = response.data;  // 将反馈数据存储在 rows 中
     code.value = response.code;  // 从响应中提取 code 作为反馈序号
