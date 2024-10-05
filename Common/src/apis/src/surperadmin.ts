@@ -32,8 +32,8 @@ export const delAdmin = (userID: String) => {
 }
 
 export const reviewFeedback = (request_id: number, if_rubbish :number) => {
-    return request.post('superadmin',{
-        request_id,
-        if_rubbish
-    })
+  return request.post('superadmin',{
+    request_id,
+    if_rubbish
+  })
 }
