@@ -13,10 +13,10 @@ import request from '../request'
  * @param userID 修改者的学号/账号
  * @param value 修改的值
  */
-export const putProfile = (name: string, userID: string, value: string) => {
-  return request.put('user/profile/' + name, {
-    user_id: userID,
-    value
+export const putProfile = (name: string, new_value: string) => {
+  return request.put('user/profile/', {
+    object: name,
+    new_value
   })
 }
 
