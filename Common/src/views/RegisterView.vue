@@ -8,7 +8,7 @@ import user from '@/assets/user.png'
 import Mail from '@/assets/Mail.png'
 import code from '@/assets/code.png'
 import PhoneNumber from '@/assets/PhoneNumber.png'
-import { authRegister } from '@/apis/request';
+import { authRegister } from '@/apis/src/auth';
 
 export default {
   data() {
