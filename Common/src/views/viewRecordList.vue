@@ -1,30 +1,37 @@
-<!-- 超级管理员 已处理反馈列表 -->
-
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import CusBox from '@/ui/CusBox.vue';         // 引入 CusBox 组件
 import CusColumn from '@/ui/CusColumn.vue';   // 引入 CusColumn 组件
 import CusButton2 from '@/ui/CusButton2.vue';
+import { getProfeedbacks } from '@/apis/src/user';  // 引入封装的 API 方法
 
-// 模拟数据
-const rows = Array(20).fill({
-  number: "",
-  id: "",
-  title: "",
-  time: "",
-  category: "",
-  urgency: "",
-  anonymous: "",
-  progress: "",
-  action: "查看" 
+// 定义 rows 数组来存储获取到的反馈数据
+const rows = ref<Array<any>>([]);  // 使用 ref 来响应式存储数据
+const code = ref<number>(0);       // 用于存储反馈序号
+
+// 定义获取反馈数据的函数
+const fetchFeedbacks = async () => {
+  try {
+    const response = await getProfeedbacks(20, 0);  
+    // 假设 response.data 是包含反馈信息的数组
+    rows.value = response.data;  // 将反馈数据存储在 rows 中
+    code.value = response.code;  // 从响应中提取 code 作为反馈序号
+  } catch (error) {
+    console.error('获取反馈数据失败:', error);
+  }
+};
+
+// 在组件挂载时获取反馈数据
+onMounted(() => {
+  fetchFeedbacks();
 });
 </script>
-
 <template>
   <header>
     <!-- 左侧菜单栏 -->
     <cus-column
       content="内容"
-      :items="[
+      :items="[ 
         { title: '用户中心', to: { name: 'user' } },
         { title: '反馈记录', to: { name: 'view' } },
         { title: '反馈提交', to: { name: 'record' } }
@@ -47,24 +54,25 @@ const rows = Array(20).fill({
       <cus-box :input="false" content="操作" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
     </div>
 
-    <!-- 生成20行数据 -->
+    <!-- 根据 rows 数据动态生成反馈记录 -->
     <div v-for="(row, index) in rows" :key="index" style="display: flex;">
-      <cus-box :input="false" :content="row.number" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
-      <cus-box :input="false" :content="row.id" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
-      <cus-box :input="false" :content="row.title" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
-      <cus-box :input="false" :content="row.time" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
-      <cus-box :input="false" :content="row.category" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
-      <cus-box :input="false" :content="row.urgency" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
-      <cus-box :input="false" :content="row.anonymous" h="60px" w="129px" :textAlign="['center', 'top']" style="background-color: rgb(255, 255, 255);"></cus-box>
-      <cus-box :input="false" h="60px" w="129px" style="background-color: rgb(255, 255, 255);">
+      <!-- 使用顶层的 code 来显示反馈序号 -->
+      <cus-box :input="false" :content="code" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" :content="row.id" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" :content="row.title" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" :content="row.update_at" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" :content="row.category" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" :content="row.urgency" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" :content="row.if_anonymous ? '是' : '否'" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" h="60px" w="129px">
         <cus-button2 content="查看" style="left:30.5px;top:19.3px;"></cus-button2>
       </cus-box>
-      
     </div>
   </div>
 
   <RouterView />
 </template>
+
 
 <style scoped>
 /* 去除列与列之间的间隙 */
