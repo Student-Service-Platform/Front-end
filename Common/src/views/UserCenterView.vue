@@ -65,6 +65,11 @@ export default {
         putProfile("mail",this.data.mail).then(res=>{alert(res.data.msg)})
       if(this.pwd != "")
         putProfile("password",this.pwd).then(res=>{alert(res.data.msg)})
+    },
+    logout(){
+      this.$cookies.remove("user_id")
+      localStorage.clear()
+      this.$router.push("login")
     }
    }
    
@@ -124,11 +129,11 @@ export default {
       required
     ></cus-input>
     <cus-button class="save-btn-jntm" content="保存更改" @click="saveProfile"></cus-button>
-    <cus-button class="tuichudenglu" content="退出登录" @click="$router.push({ name: 'login' })"></cus-button>
+    <cus-button class="tuichudenglu" content="退出登录" @click="logout"></cus-button>
 </div>
 </template>
 
-<style>
+<style scoped>
 .UserCenter {
   border-radius: 16px;
   background: rgb(255, 255, 255);

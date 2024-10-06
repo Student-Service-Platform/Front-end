@@ -40,7 +40,10 @@ export default {
         alert("修改失败，请检查输入的信息。");
         console.error(error);
       }
-    }
+    },
+    goToLogin(){
+      this.$router.push({name: "login"})
+    },
   }
 }
 </script>
@@ -64,7 +67,7 @@ export default {
       v-model="email"
       required
     ></cus-input>
-    <cus-input
+    <!-- <cus-input
       style="top: 44%"
       class="input"
       :path="code"
@@ -72,9 +75,9 @@ export default {
       width="200px"
       v-model="verificationCode"
       required
-    ></cus-input>
+    ></cus-input> -->
     <cus-input
-      style="top: 56%"
+      style="top: 44%"
       class="input"
       :path="password"
       content="请输入密码"
@@ -83,7 +86,7 @@ export default {
       required
     ></cus-input>
     <cus-input
-      style="top: 68%"
+      style="top: 56%"
       class="input"
       :path="password"
       content="请再次输入密码"
@@ -91,8 +94,10 @@ export default {
       type="password"
       required
     ></cus-input>
+
     <cus-button class="PasswordReset-btn" content="一键修改" @click="resetpassword"></cus-button>
-    <cus-button class="code-btn" content="发送验证码"></cus-button>
+    <p type="button" style="right: 90px;top:68%" @click="goToLogin">回到登录</p>
+    <!-- <cus-button class="code-btn" content="发送验证码"></cus-button> -->
   </div>
 </template>
 
@@ -139,5 +144,16 @@ export default {
   top: 32%;
   z-index: 3;
   right: 61px;
+}
+div > p {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 46.5px;
+  transform: translateX(50%);
+  top: 265px;
+  color: rgb(140, 140, 140);
+  font-weight: 400;
+  cursor: pointer;
 }
 </style>

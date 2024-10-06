@@ -71,7 +71,12 @@ export default {
       if(this.pwd != "")
         putProfile("password",this.pwd).then(res=>{alert(res.data.msg)})
     }
-   }
+   },
+    logout(){
+      this.$cookies.remove("user_id")
+      localStorage.clear()
+      this.$router.push("login")
+    }
 }
 </script>
 
@@ -136,11 +141,12 @@ export default {
       content="请更改手机号"
       required
       ></cus-input>
-    <cus-button class="save-btn-jntm" content="保存更改" :click="saveProfile"></cus-button>
+    <cus-button class="btn" style="bottom: 62px;" content="保存更改" :click="saveProfile"></cus-button>
+    <cus-button class="btn" style="bottom: 12px;" content="退出登录" @click="logout"></cus-button>
   </div>
 </template>
 
-<style>
+<style scoped>
 .CommonAdminCenter {
   border-radius: 16px;
   background: rgb(255, 255, 255);
@@ -170,14 +176,13 @@ export default {
   position: absolute;
   left: 61px;
 }
-.save-btn-jntm1 {
+.btn {
   z-index: 3;
   font-size: 16px;
   cursor: pointer;
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
-  top: 84%;
 }
 .disabled-input1 {
   pointer-events: none;
