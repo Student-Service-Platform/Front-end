@@ -26,7 +26,8 @@ export default {
       email: '',            // 邮箱
       verificationCode: '', // 验证码
       phoneNumber: '',      // 手机号
-      authRegister
+      authRegister,
+      errorMsg: ''          // 错误信息
     };
   },
   components: {
@@ -34,9 +35,43 @@ export default {
     CusInput
   },
   methods: {
-    async register() {
+    validateInputs() {
+
+      this.errorMsg = '';
+
+      if (!/^\d{12}$/.test(this.userId)) {
+        this.errorMsg = '学号必须是12位数字';
+        return false;
+      }
+
+      if (!/^\d{11}$/.test(this.phoneNumber)) {
+        this.errorMsg = '手机号必须为11位数字';
+        return false;
+      }
+
+      if (!/^.{8,16}$/.test(this.passwordInput)) {
+        this.errorMsg = '密码必须在8到16位字符之间';
+        return false;
+      }
+
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailPattern.test(this.email)) {
+        this.errorMsg = '请输入有效的邮箱地址';
+        return false;
+      }
+
       if (this.passwordInput !== this.confirmPassword) {
-        alert("两次输入的密码不一致");
+        this.errorMsg = '两次输入的密码不一致';
+        return false;
+      }
+
+      return true;
+    },
+
+    async register() {
+      const isValid = this.validateInputs();
+      if (!isValid) {
+        alert(this.errorMsg);
         return;
       }
       try {
