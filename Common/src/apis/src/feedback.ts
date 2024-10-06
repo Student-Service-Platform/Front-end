@@ -32,8 +32,8 @@ export const getFeedbacks = (
  * @param id 原帖id 可选
  * @param userID 回复者id
  */
-export const getFeedback = (id: string, userID: string) => {
-  return request.get(`feedback/${id}?user_id=${userID}`)
+export const getFeedback = (id: string) => {
+  return request.get(`feedback/${id}`)
 }
 
 /**

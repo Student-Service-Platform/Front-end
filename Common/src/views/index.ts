@@ -3,6 +3,7 @@
 import LoginView from './loginView.vue'
 import RegisterView from './registerView.vue'
 import testView from './testView.vue'
+import PasswordResetView from './PasswordResetView.vue'
 // 用户相关
 import recordExpansion from './recordExpansion.vue'
 import viewRecordList from './viewRecordList.vue'
@@ -31,5 +32,6 @@ export {
   unrocessedFeedbackExpansion,
   spamFeedbackExpansion,
   spamFeedbackList,
-  adminCenterView
+  adminCenterView,
+  PasswordResetView
 }

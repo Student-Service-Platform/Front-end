@@ -24,6 +24,7 @@ Arg:
       :checked="selected"
       @click="$emit('update:group', value)"
     />
+    <input v-else-if="modelValue==undefined" type="checkbox" :disabled="readonly" :checked="set"/>
     <input v-else type="checkbox" :disabled="readonly" v-model="check"/>
     <span>{{ content }}</span>
   </div>
@@ -45,7 +46,8 @@ export default {
     },
     group: Number,
     value: Number,
-    modelValue: Boolean
+    modelValue: Boolean,
+    set: Boolean
   },
   emits: ['update:group', 'update:modelValue'],
   setup(props, { emit }) {
