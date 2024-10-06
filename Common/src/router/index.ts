@@ -14,7 +14,8 @@ import {
   processedFeedbackList,
   spamFeedbackExpansion,
   spamFeedbackList,
-  UserCenterView
+  UserCenterView,
+  PasswordResetView
 } from '@/views'
 import { loginGuard } from './guard'
 
@@ -70,6 +71,11 @@ const router = createRouter({
       name: 'spam',
       path: '/admin/spam',
       component: spamFeedbackList
+    },
+    {
+        name:'passwordreset',
+        path: '/resetpwd',
+        component: PasswordResetView
     }
   ]
 }) //.beforeEach(loginGuard)

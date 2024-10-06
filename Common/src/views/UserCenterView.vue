@@ -40,7 +40,8 @@ export default {
     }
    },
    mounted() {
-       getProfile("123").then(res=>{
+      const userID = this.$cookies.get("user_id")
+      getProfile(userID).then(res=>{
         this.data.mail = res.data.data.mail
         this.data.name = res.data.data.name
         this.data.user_id = res.data.data.user_id
@@ -85,46 +86,42 @@ export default {
   <div class="UserCenter" v-else>
     <h1 class="jntm">用户中心</h1>
     <cus-input
-      style="top: 23%"
+      style="top: 16%"
       class="inputjntm disabled-input"
       :path="AugmentedReality"
       content="用户ID"
-      v-model="data.user_id"
       required
     ></cus-input>
     <cus-input
-      style="top: 35%"
+      style="top: 28%"
       class="inputjntm"
       :path="user"
       content="请更改用户名"
-      v-model="data.name"
       required
     ></cus-input>
     <cus-input
-      style="top: 47%"
+      style="top: 40%"
       class="inputjntm"
       :path="password"
       content="请更改密码"
-      v-model="pwd"
       required
     ></cus-input>
     <cus-input
-      style="top: 59%"
+      style="top: 52%"
       class="inputjntm"
       :path="Mail"
       content="请更改邮箱"
-      v-model="data.mail"
       required
     ></cus-input>
     <cus-input
-      style="top: 71%"
+      style="top: 64%"
       class="inputjntm"
       :path="PhoneNumber"
       content="请更改手机号"
-      v-model="data.phone"
       required
     ></cus-input>
     <cus-button class="save-btn-jntm" content="保存更改" :click="saveProfile"></cus-button>
+    <cus-button class="tuichudenglu" content="退出登录" :click="$router.push('/login')"></cus-button>
   </div>
 </template>
 
@@ -136,7 +133,7 @@ export default {
   z-index: 1;
   position: absolute;
   width: 430px;
-  height: 400px;
+  height: 500px;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
@@ -165,7 +162,16 @@ export default {
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
-  top: 83%;
+  top: 76%;
+}
+.tuichudenglu {
+  z-index: 3;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  top: 88%;
 }
 .disabled-input input {
   pointer-events: none;

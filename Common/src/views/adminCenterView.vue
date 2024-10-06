@@ -1,7 +1,7 @@
 <!--
 @description: 普通管理员个人界面
 -->
-<script setup lang="ts">
+<script lang="ts">
 import CusInput from '@/ui/CusInput.vue'
 import CusButton from '@/ui/CusButton.vue'
 import CusColumn from '@/ui/CusColumn.vue'
@@ -11,6 +11,68 @@ import user from '@/assets/user.png'
 import Mail from '@/assets/Mail.png'
 import PhoneNumber from '@/assets/PhoneNumber.png'
 import IconStepsFinished from '@/assets/IconStepsFinished.png'
+import { getProfile } from '@/apis/src/admin'
+import { putProfile } from '@/apis/src/user'
+
+export default {
+  data() {
+    return {
+      AugmentedReality,
+      password,
+      user,
+      Mail,
+      PhoneNumber,
+      IconStepsFinished,
+      data: {
+        user_id: "",
+        name: "",
+        phone: "",
+        mail: ""
+      },
+      loading: true,
+      origin:{
+        user_id: "",
+        name: "",
+        phone: "",
+        mail: ""
+      },
+      pwd: ""
+    }
+  },
+  components:{
+    CusButton,
+    CusInput,
+    CusColumn
+  },
+  mounted(){
+    const userID = this.$cookies.get("user_id")
+    getProfile(userID).then(res=>{
+        this.data.mail = res.data.data.mail
+        this.data.name = res.data.data.name
+        this.data.user_id = res.data.data.user_id
+        this.data.phone = res.data.data.phone
+        this.origin.mail = res.data.data.mail
+        this.origin.name = res.data.data.name
+        this.origin.user_id = res.data.data.user_id
+        this.origin.phone = res.data.data.phone
+        this.loading = false
+       }).catch(()=>{
+        alert("出错了。。。")
+       })
+    },
+   methods:{
+    saveProfile() {
+      if(this.data.name!=this.origin.name)
+        putProfile("username",this.data.name).then(res=>{alert(res.data.msg)})
+      if(this.data.phone!=this.origin.phone)
+        putProfile("phone",this.data.phone).then(res=>{alert(res.data.msg)})
+      if(this.data.mail!=this.origin.mail)
+        putProfile("mail",this.data.mail).then(res=>{alert(res.data.msg)})
+      if(this.pwd != "")
+        putProfile("password",this.pwd).then(res=>{alert(res.data.msg)})
+    }
+   }
+}
 </script>
 
 <template>
@@ -26,31 +88,37 @@ import IconStepsFinished from '@/assets/IconStepsFinished.png'
       :default="0"
     ></cus-column>
   </header>
-  <div class="CommonAdminCenter">
+  <div class="CommonAdminCenter" v-if="loading">
+    <h1 class="jntm1">加载中</h1>
+  </div>
+  <div class="CommonAdminCenter" v-else>
     <h1 class="jntm1">普通管理员中心</h1>
     <cus-input
       style="top: 18%"
       class="inputjntm1 disabled-input1"
       :path="IconStepsFinished"
-      content="管理员评分"
+      content="管理员评分-(没做呢)"
     ></cus-input>
     <cus-input
       style="top: 29%"
       class="inputjntm1 disabled-input1"
       :path="AugmentedReality"
       content="管理员ID"
+      v-model="data.user_id"
     ></cus-input>
     <cus-input
       style="top: 40%"
       class="inputjntm1"
       :path="user"
       content="管理员用户名"
+      v-moudel="data.name"
     ></cus-input>
     <cus-input
       style="top: 51%"
       class="inputjntm1"
       :path="password"
       content="请更改密码"
+      v-model="pwd"
       required
     ></cus-input>
     <cus-input
@@ -58,6 +126,7 @@ import IconStepsFinished from '@/assets/IconStepsFinished.png'
       class="inputjntm1"
       :path="Mail"
       content="请更改邮箱"
+      v-model="data.mail"
       required
     ></cus-input>
     <cus-input
@@ -66,12 +135,12 @@ import IconStepsFinished from '@/assets/IconStepsFinished.png'
       :path="PhoneNumber"
       content="请更改手机号"
       required
-    ></cus-input>
-    <cus-button class="save-btn-jntm1" content="保存更改"></cus-button>
+      ></cus-input>
+    <cus-button class="save-btn-jntm" content="保存更改" :click="saveProfile"></cus-button>
   </div>
 </template>
 
-<style scoped>
+<style>
 .CommonAdminCenter {
   border-radius: 16px;
   background: rgb(255, 255, 255);
