@@ -63,3 +63,11 @@ export const getProFeedbacks = (page:number, limit:number) => {
 export const getSpamFeedbacks = (page:number, limit:number) => {
   return request.get(`feedback/select?page=${page}&limit=${limit}&rubbish=0`)
 }
+
+/**
+ * @description 获取评分
+ * @param grade 评分
+ */
+export const getAdminGrade = (grade: number) => {
+    return request.get('admin/grade?grade=' + grade)
+}

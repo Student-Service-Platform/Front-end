@@ -122,13 +122,8 @@ export default {
       :path="PhoneNumber"
       content="请更改手机号"
       required
-    ></cus-input>
-    <cus-button class="save-btn-jntm1" content="保存更改"></cus-button>
-  </div>
-</template>
-
-<style scoped>
-.CommonAdminCenter {
+honeNumber"
+CommonAdminCenter {
   border-radius: 16px;
   background: rgb(255, 255, 255);
   box-shadow: 2px 2px lightgray;
