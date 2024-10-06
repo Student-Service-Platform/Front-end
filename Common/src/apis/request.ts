@@ -7,12 +7,10 @@
 
 import axios from 'axios'
 import type { AxiosInstance } from 'axios'
-import { config } from '@/config'
 
-const baseURL = config.domain ? `http${config.https ? 's' : ''}://${config.domain}` : ''
 
 const service: AxiosInstance = axios.create({
-  baseURL: `${baseURL}/api/`,
+  baseURL: `/api/`,
   timeout: 5000,
   headers: {
     Authorization: localStorage.getItem('token') || '' // 添加认证

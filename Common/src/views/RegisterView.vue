@@ -40,8 +40,14 @@ export default {
         return;
       }
       try {
-        const response = await authRegister(this.userId, this.username, this.passwordInput, true, this.phoneNumber);
-        alert("注册成功！用户名："+ response.data.username);
+        authRegister(this.userId, this.username, this.passwordInput, true, this.phoneNumber).then(res=>{
+          if (res.data.code == 200200) {
+            alert("注册成功")
+            this.$router.push({name:"login"})
+          } else {
+            alert(res.data.msg)
+          }
+        })
       } 
       catch (error) {
         alert("注册失败，请检查输入的信息。");

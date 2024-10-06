@@ -42,7 +42,7 @@ import IconStepsFinished from '@/assets/IconStepsFinished.png'
     ></cus-input>
     <cus-input
       style="top: 40%"
-      class="inputjntm1 disabled-input1"
+      class="inputjntm1"
       :path="user"
       content="管理员用户名"
     ></cus-input>

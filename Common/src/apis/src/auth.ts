@@ -13,7 +13,8 @@ import request from '../request'
  */
 export const authLogin = (username: string, password: string) => {
   return request.post('auth/login', {
-    username,
+    "user_id": username,
+    "is_admin": false,
     password
   })
   // cookie处理与页面跳转由后端完成
@@ -25,8 +26,9 @@ export const authLogin = (username: string, password: string) => {
  * @param password 密码
  */
 export const authAdmin = (username: string, password: string) => {
-  return request.post('auth/adminlogin', {
-    username,
+  return request.post('auth/login', {
+    "user_id": username,
+    "is_admin": true,
     password
   })
   // cookie处理与页面跳转由后端完成

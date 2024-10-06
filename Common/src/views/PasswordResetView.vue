@@ -33,7 +33,7 @@ export default {
         return;
       }
       try {
-        const response = await resetpwd(this.userId, this.email, this.verificationCode, this.passwordInput, this.confirmPassword);
+        const response = await resetpwd(this.userId, this.email, this.verificationCode, this.passwordInput, this.confirmPassword).then();
         alert("密码修改成功！");
       } 
       catch (error) {

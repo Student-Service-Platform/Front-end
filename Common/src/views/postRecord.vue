@@ -44,19 +44,24 @@ export default {
         alert('标题和内容不能为空');
         return;
       }
+      // 获取user_id
+      const userID = this.$cookies.get("user_id")
+
+      console.log(userID)
 
       // 组织提交数据
       const postData = {
         title: this.title, // 标题
         category: this.category, // 类别
         is_urgent: this.isUrgent, // 是否紧急
-        if_anonymous: this.isAnonymous, // 是否匿名
+        is_anonymous: this.isAnonymous, // 是否匿名
         description: this.description // 反馈描述
       };
       
       try {
         // 调用API提交反馈
-        const response = await postFeedback('userID', postData); // 假设你有userID
+        const response = await postFeedback(userID, postData); // 假设你有userID
+        console.log(response)
 
         // 检查响应状态，如果提交成功，提示用户
         if (response.data.code === 200200) {

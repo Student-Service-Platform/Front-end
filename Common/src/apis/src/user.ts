@@ -33,8 +33,8 @@ export const getProfile = (userID: string) => {
  * @param limit 限制获取的条数
  * @param offset 偏移量
  */
-export const getProfeedbacks = (limit: number, offset: number) => {
-  return request.get(`user/profile?limit=${limit}&offset=${offset}`)
+export const getProfeedbacks = (user_id: string,limit: number, offset: number) => {
+  return request.get(`user/feedback?user_id=${user_id}&limit=${limit}&offset=${offset}`)
 }
 
 /**
@@ -53,16 +53,16 @@ export const postFeedback = (
     title: string
     category: number
     is_urgent: boolean
-    if_anonymous: boolean
+    is_anonymous: boolean
     description: string
   }
 ) => {
   return request.post('user/feedback', {
-    student_id: userID,
+    user_id: userID,
     title: post.title,
     category: post.category,
     is_urgent: post.is_urgent,
-    if_anonymous: post.if_anonymous,
+    is_anonymous: post.is_anonymous,
     description: post.description
   })
 }

@@ -24,7 +24,7 @@ Args:
 <template>
   <div :style="{ width: w, height: h }">
     <textarea v-if="input" :placeholder="content" v-model="val"></textarea>
-    <p v-else-if="content" :class="textAlign">{{ content }}</p>
+    <p v-else-if="content!=undefined" :class="textAlign">{{ content }}</p>
     <slot></slot>
   </div>
 </template>

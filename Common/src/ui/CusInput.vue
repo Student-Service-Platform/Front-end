@@ -8,7 +8,7 @@ Latest: 2024.10.2 17:04
 <template>
   <div>
     <img :src="path" />
-    <input :placeholder="content" :style="{ width: width ? width : '308px' }" v-model="val" />
+    <input :placeholder="content" :style="{ width: width ? width : '308px' }" v-model="val"/>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     },
     content: String,
     width: String,
-    modelValue: String
+    modelValue: String,
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {

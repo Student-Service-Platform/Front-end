@@ -4,18 +4,24 @@ import CusBox from '@/ui/CusBox.vue';         // 引入 CusBox 组件
 import CusColumn from '@/ui/CusColumn.vue';   // 引入 CusColumn 组件
 import CusButton2 from '@/ui/CusButton2.vue';
 import { getProfeedbacks } from '@/apis/src/user';  // 引入封装的 API 方法
+import router from '@/router';
 
 // 定义 rows 数组来存储获取到的反馈数据
 const rows = ref<Array<any>>([]);  // 使用 ref 来响应式存储数据
 const code = ref<number>(0);       // 用于存储反馈序号
-const user_id=123;
 // 定义获取反馈数据的函数
 const fetchFeedbacks = async () => {
   try {
-    const response = await getProfeedbacks(user_id,20, 0);  
+    const response = await getProfeedbacks("123", 20, 0);
+    if (response.data.code == 200200)
     // 假设 response.data 是包含反馈信息的数组
-    rows.value = response.data;  // 将反馈数据存储在 rows 中
-    code.value = response.code;  // 从响应中提取 code 作为反馈序号
+      rows.value = response.data.data;  // 将反馈数据存储在 rows 中
+    else {
+      alert(response.data.msg)
+      setInterval(()=>{
+        router.push({name:"view"})
+      }, 5000)
+    }
   } catch (error) {
     console.error('获取反馈数据失败:', error);
   }
@@ -58,14 +64,14 @@ onMounted(() => {
     <!-- 根据 rows 数据动态生成反馈记录 -->
     <div v-for="(row, index) in rows" :key="index" style="display: flex;">
       <!-- 使用顶层的 code 来显示反馈序号 -->
-      <cus-box :input="false" :content="code" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
-      <cus-box :input="false" :content="row.id" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
-      <cus-box :input="false" :content="row.title" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
-      <cus-box :input="false" :content="row.update_at" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
-      <cus-box :input="false" :content="row.category" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
-      <cus-box :input="false" :content="row.urgency" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
-      <cus-box :input="false" :content="row.if_anonymous ? '是' : '否'" h="60px" w="115px" :textAlign="['center', 'top']"></cus-box>
-      <cus-box :input="false" :content="row.status? '是' : '否'" h="60px" w="115px" :textAlign="['center', 'top']"></cus-box>
+      <cus-box :input="false" :content="index" h="60px" w="129px" :textAlign="['center']"></cus-box>
+      <cus-box :input="false" :content="row.id" h="60px" w="129px" :textAlign="['center']"></cus-box>
+      <cus-box :input="false" :content="row.title" h="60px" w="129px" :textAlign="['center']"></cus-box>
+      <cus-box :input="false" :content="row.created_at" h="60px" w="129px" :textAlign="['center']"></cus-box>
+      <cus-box :input="false" :content="row.category" h="60px" w="129px" :textAlign="['center']"></cus-box>
+      <cus-box :input="false" :content="row.urgency" h="60px" w="129px" :textAlign="['center']"></cus-box>
+      <cus-box :input="false" :content="row.username == '匿名用户' ? '是' : '否'" h="60px" w="115px" :textAlign="['center']"></cus-box>
+      <cus-box :input="false" :content="row.status? '是' : '否'" h="60px" w="115px" :textAlign="['center']"></cus-box>
       <cus-box :input="false" h="60px" w="129px">
         <cus-button2 content="查看" style="left:30.5px;top:19.3px;"></cus-button2>
       </cus-box>

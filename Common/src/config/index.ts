@@ -7,6 +7,6 @@
 
 // 此Store用于保存config
 export const config = {
-  domain: '127.0.0.1:4523/m1/5195939-4861849-default',
+  domain: 'http://127.0.0.1:9090',
   https: false
 }
