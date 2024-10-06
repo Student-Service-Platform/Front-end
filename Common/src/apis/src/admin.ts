@@ -45,3 +45,11 @@ export const getProfile = (userID: string) => {
 export const getfeedbacks = (code: string) => {
   return request.get('admin/?code_id=' +code)
 }
+
+/**
+ * @description 获取评分
+ * @param grade 评分
+ */
+export const getAdminGrade = (grade: number) => {
+    return request.get('admin/grade?grade=' + grade)
+}
