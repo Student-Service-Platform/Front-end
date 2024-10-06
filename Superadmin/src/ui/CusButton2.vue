@@ -5,14 +5,13 @@ CreatedAt: 2024.9.29 22:11
 Latest: 2024.9.29 22:11
 -->
 <template>
-  <button @click="click">{{ content }}</button>
+  <button>{{ content }}</button>
 </template>
 
 <script>
 export default {
   props: {
-    content: String,
-    click: Function
+    content: String
   }
 }
 </script>
