@@ -120,9 +120,9 @@ export default {
       content="请更改手机号"
       required
     ></cus-input>
-    <cus-button class="save-btn-jntm" content="保存更改" :click="saveProfile"></cus-button>
-    <cus-button class="tuichudenglu" content="退出登录" :click="$router.push('/login')"></cus-button>
-  </div>
+    <cus-button class="save-btn-jntm" content="保存更改" @click="saveProfile"></cus-button>
+    <cus-button class="tuichudenglu" content="退出登录" @click="$router.push({ name: 'login' })"></cus-button>
+</div>
 </template>
 
 <style>
