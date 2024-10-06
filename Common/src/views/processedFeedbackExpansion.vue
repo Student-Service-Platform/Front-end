@@ -1,51 +1,84 @@
-<script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import CusBox from '@/ui/CusBox.vue';         // 引入 CusBox 组件
-import CusColumn from '@/ui/CusColumn.vue';   // 引入 CusColumn 组件
-import CusButton2 from '@/ui/CusButton2.vue';
-import { getProFeedbacks } from '@/apis/src/admin';  // 引入封装的 API 方法
-import router from '@/router';
+<script lang="ts">
+// 引入自定义组件和图片资源
+import CusBox from '@/ui/CusBox.vue' // 自定义盒子组件，可以显示内容或输入框
+import CusButton from '@/ui/CusButton.vue' // 自定义按钮组件
+import CusButton2 from '@/ui/CusButton2.vue' // 自定义按钮组件
+import CusColumn from '@/ui/CusColumn.vue' // 自定义列组件，显示选项菜单
+import CusCheckbox from '@/ui/CusCheckbox.vue' // 自定义复选框组件
+import User from '@/assets/User.png' // 引入用户图片
+import { getFeedback } from '@/apis/src/feedback'
 
-// 定义 rows 数组来存储获取到的反馈数据
-const rows = ref<Array<any>>([]);  // 使用 ref 来响应式存储数据
-const code = ref<number>(0);       // 用于存储反馈序号
-// 定义获取反馈数据的函数
-const fetchFeedbacks = async () => {
-  try {
-    const response = await getProFeedbacks(20, 0);
-    console.log(response)
-    if (response.data.code == 200200)
-    // 假设 response.data 是包含反馈信息的数组
-      rows.value = response.data.data;  // 将反馈数据存储在 rows 中
-    else {
-      alert(response.data.msg)
-      setInterval(()=>{
-        router.push({name:"view"})
-      }, 5000)
+
+export default {
+  props:{
+    id: String 
+  },
+  // 注册上述引入的组件，供模板使用
+  components: {
+    CusBox,
+    CusButton,
+    CusButton2,
+    CusColumn,
+    CusCheckbox
+  },
+  data() {
+    // 定义数据 user，存储图片路径，供输入栏组件使用
+    return {
+      user: User,
+      loading: true,
+      data: {
+        "username": "",
+        "created_at": "",
+        "title": "",
+        "description": "",
+        "category": 0,
+        "urgency": 0,
+        "grade": 0,
+        "grade_content": "",
+        "undertaker": "",
+        "status": false,
+      },
+      reply: [],
+      rate: 5
     }
-  } catch (error) {
-    console.error('获取反馈数据失败:', error);
+  },
+  mounted() {
+    if (this.$route.query.id)
+      getFeedback(this.$route.query.id).then(res=>{
+        this.data = res.data.data.request
+        this.reply = res.data.data.replies
+        this.loading = false
+        console.log(this.data)
+      })
+    else
+      this.$router.push({name:"view"})
+  },
+  computed: {
+    replies: {
+      get(this) :string{
+        if (this.reply == null)
+          return "无"
+        let s = ""
+        for (let i of this.reply){
+          s += i.respondent+": "+i.content+"\n"
+        }
+        return s
+      }
+    }
   }
-};
-
-// 在组件挂载时获取反馈数据
-onMounted(() => {
-  fetchFeedbacks();
-});
+}
 </script>
 <template>
   <header>
     <!-- 左侧菜单栏 -->
     <cus-column
-    content="内容"
-    :items="[
-      { title: '个人中心', to: { name: 'admincenter' } },
-      { title: '未处理反馈', to: { name: 'unprocessed' } },
-      { title: '已处理反馈', to: { name: 'processed' } },
-      { title: '垃圾信息', to: { name: 'spam' } }
-    ]"
-    :default="2"
-  ></cus-column>
+      content="内容"
+      :items="[
+        { title: '反馈记录', to: { query: {id: $route.query.id}} },
+        { title: '返回列表', to: { name: 'processed' } }
+      ]"
+      :default="0"
+    ></cus-column>
   </header>
 
   <!-- 右侧表格 -->
@@ -61,7 +94,7 @@ onMounted(() => {
       ></cus-box>
       <cus-box
         :input="false"
-        content="responce.title"
+        :content="data.title"
         h="60px"
         w="704px"
         :textAlign="['center', 'top']"
@@ -70,11 +103,18 @@ onMounted(() => {
 
     <!-- 第二行：是否紧急等 -->
     <div style="display: flex">
-      <cus-box :input="false" h="60px" w="845px">
-        <span style="position: absolute; left: 150px; top: 20.5px">紧急度</span>
-        <cus-button2 content="responce.urgency" left:215px top:20.5px></cus-button2>
-        <cus-switch style="left: 500px; top: 19.3px" content="是否匿名" :radio="response.if_anonymous"></cus-switch>
-
+      <cus-box :input="false" h="60px" w="845px" :textAlign="['left', 'top']">
+        <div class="info">
+          <span style="left: 6%">紧急度</span>
+          <CusCheckbox style="left: 18%" content="5" :readonly="true" value="5" v-model:group="data.urgency"></CusCheckbox>
+          <CusCheckbox style="left: 27%" content="4" :readonly="true" value="4" v-model:group="data.urgency"></CusCheckbox>
+          <CusCheckbox style="left: 36%" content="3" :readonly="true" value="3" v-model:group="data.urgency"></CusCheckbox>
+          <CusCheckbox style="left: 45%" content="2" :readonly="true" value="2" v-model:group="data.urgency"></CusCheckbox>
+          <CusCheckbox style="left: 54%" content="1" :readonly="true" value="1" v-model:group="data.urgency"></CusCheckbox>
+          <CusCheckbox style="left: 63%" content="0" :readonly="true" value="0" v-model:group="data.urgency"></CusCheckbox>
+          <CusCheckbox style="left: 72%" content="是否匿名" :readonly="true" :radio="false" :set="data.username=='匿名用户'"></CusCheckbox>
+          <CusCheckbox style="left: 85%" content="是否处理" :readonly="true" :radio="false" :set="data.status"></CusCheckbox>
+        </div>
       </cus-box>
     </div>
 
@@ -87,17 +127,20 @@ onMounted(() => {
         w="141px"
         :textAlign="['center', 'top']"
       ></cus-box>
-
-      <!-- 添加复选框行 -->
-      <div style="position: relative; width: 704px">
-        <cus-box :input="false" content="" h="60px" w="704px" :textAlign="['left', 'top']">
-          <cus-button2 content="responce.category" left:15px top:20.5px></cus-button2>  
-        </cus-box>
-      </div>
+      <cus-box :input="false" h="60px" w="704px" :textAlign="['left', 'top']">
+        <div class="info">
+          <CusCheckbox style="left: 2%" content="学术与课程" :readonly="true" :value="0" v-model:group="data.category"></CusCheckbox>
+          <CusCheckbox style="left: 19%" content="财务与奖学金" :readonly="true" :value="1" v-model:group="data.category"></CusCheckbox>
+          <CusCheckbox style="left: 38%" content="餐饮与住宿" :readonly="true" :value="2" v-model:group="data.category"></CusCheckbox>
+          <CusCheckbox style="left: 56%" content="技术与设施" :readonly="true" :value="3" v-model:group="data.category"></CusCheckbox>
+          <CusCheckbox style="left: 73%" content="安全与行政" :readonly="true" :value="4" v-model:group="data.category"></CusCheckbox>
+          <CusCheckbox style="left: 90%" content="其他" :readonly="true" :value="5" v-model:group="data.category"></CusCheckbox>
+        </div>
+      </cus-box>
     </div>
 
-    <!-- 第四行：内容 -->
-    <div style="display: flex">
+   <!-- 第四行：内容 -->
+   <div style="display: flex">
       <cus-box
         :input="false"
         content="内容"
@@ -107,7 +150,7 @@ onMounted(() => {
       ></cus-box>
       <cus-box
         :input="false"
-        content="responce.description"
+        :content="data.description"
         h="109px"
         w="704px"
         :textAlign="['left', 'top']"
@@ -143,7 +186,7 @@ onMounted(() => {
       ></cus-box>
       <cus-box
         :input="false"
-        content="responce.respond"
+        :content="replies"
         h="144px"
         w="704px"
         :textAlign="['left', 'top']"
