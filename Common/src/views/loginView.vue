@@ -57,6 +57,12 @@ export default {
           }
         })
       }
+    },
+    goToPasswordReset() {
+      this.$router.push({ name: 'passwordreset' })
+    },
+    goToRegister() {
+      this.$router.push({ name:'register' })
     }
   }
 }
@@ -99,7 +105,9 @@ export default {
       "
     ></verify-code>
     <checkbox class="check-box" content="管理员" :radio="false" v-model="admin"></checkbox>
-    <p class="little-words" type="button" style="left: 57%">忘记密码</p>
+    <p  type="button" style="left: 57%" @click="goToPasswordReset">忘记密码</p>
+    <p  type="button" style="left: 48%" @click="goToRegister">回到注册</p>
+
     <cus-button class="login-btn" content="登录" :click="login"></cus-button>
   </div>
 </template>

@@ -21,9 +21,6 @@ Args:
       <p style="font-weight: 400">{{ content }}</p>
     </div>
     <div class="ColBody">
-      <div class="ColItem" style="cursor: default">
-        <p>列表</p>
-      </div>
       <router-link
         class="ColItem"
         v-for="(item, index) in items"

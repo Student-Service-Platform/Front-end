@@ -15,7 +15,9 @@ import {
   spamFeedbackExpansion,
   spamFeedbackList,
   UserCenterView,
-  PasswordResetView
+  PasswordResetView,
+  processedFeedbackExpansion,
+  unrocessedFeedbackExpansion
 } from '@/views'
 import { loginGuard } from './guard'
 
@@ -53,6 +55,11 @@ const router = createRouter({
       component: viewRecordList
     },
     {
+      name: 'exp',
+      path: '/user/list/',
+      component: recordExpansion
+    },
+    {
       name: 'admincenter',
       path: '/admin/',
       component: adminCenterView
@@ -63,9 +70,19 @@ const router = createRouter({
       component: unprocessedFeedbackList
     },
     {
+      name: 'unExp',
+      path: '/admin/unprocessed/',
+      component: unrocessedFeedbackExpansion
+    },
+    {
       name: 'processed',
       path: '/admin/processed',
       component: processedFeedbackList
+    },
+    {
+      name: 'proExp',
+      path: '/admin/processed/',
+      component: processedFeedbackExpansion
     },
     {
       name: 'spam',
