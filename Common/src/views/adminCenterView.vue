@@ -12,6 +12,7 @@ import Mail from '@/assets/Mail.png'
 import PhoneNumber from '@/assets/PhoneNumber.png'
 import IconStepsFinished from '@/assets/IconStepsFinished.png'
 import { getProfile } from '@/apis/src/admin'
+import { putProfile } from '@/apis/src/user'
 
 export default {
   data() {
@@ -58,7 +59,19 @@ export default {
        }).catch(()=>{
         alert("出错了。。。")
        })
-  }
+    },
+   methods:{
+    saveProfile() {
+      if(this.data.name!=this.origin.name)
+        putProfile("username",this.data.name).then(res=>{alert(res.data.msg)})
+      if(this.data.phone!=this.origin.phone)
+        putProfile("phone",this.data.phone).then(res=>{alert(res.data.msg)})
+      if(this.data.mail!=this.origin.mail)
+        putProfile("mail",this.data.mail).then(res=>{alert(res.data.msg)})
+      if(this.pwd != "")
+        putProfile("password",this.pwd).then(res=>{alert(res.data.msg)})
+    }
+   }
 }
 </script>
 
@@ -122,8 +135,13 @@ export default {
       :path="PhoneNumber"
       content="请更改手机号"
       required
-honeNumber"
-CommonAdminCenter {
+      ></cus-input>
+    <cus-button class="save-btn-jntm" content="保存更改" :click="saveProfile"></cus-button>
+  </div>
+</template>
+
+<style>
+.CommonAdminCenter {
   border-radius: 16px;
   background: rgb(255, 255, 255);
   box-shadow: 2px 2px lightgray;
