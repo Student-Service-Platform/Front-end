@@ -40,7 +40,8 @@ export default {
     }
    },
    mounted() {
-       getProfile("123").then(res=>{
+      const userID = this.$cookies.get("user_id")
+      getProfile(userID).then(res=>{
         this.data.mail = res.data.data.mail
         this.data.name = res.data.data.name
         this.data.user_id = res.data.data.user_id

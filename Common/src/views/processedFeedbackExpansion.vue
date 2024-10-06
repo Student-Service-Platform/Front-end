@@ -1,29 +1,28 @@
-<!-- 假设所有的数据与用户提交反馈一致  -->
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import CusBox from '@/ui/CusBox.vue';         // 引入 CusBox 组件
 import CusColumn from '@/ui/CusColumn.vue';   // 引入 CusColumn 组件
 import CusButton2 from '@/ui/CusButton2.vue';
-
-import { getfeedbacks } from '@/apis/src/admin';  // 假设有一个这样的api
-// 返回响应	
-// title	
-// description	
-// category	
-// urgency	
-// 是否匿名	if_anonymous
-// 图片	?
-// 回复	respond
-// 评价等级	eval_grade
-// 评价内容	evaluation
+import { getProFeedbacks } from '@/apis/src/admin';  // 引入封装的 API 方法
+import router from '@/router';
 
 // 定义 rows 数组来存储获取到的反馈数据
+const rows = ref<Array<any>>([]);  // 使用 ref 来响应式存储数据
 const code = ref<number>(0);       // 用于存储反馈序号
-const user_id=123;
 // 定义获取反馈数据的函数
 const fetchFeedbacks = async () => {
   try {
-    const response = await getfeedbacks(code);  //code就是帖子的序号
+    const response = await getProFeedbacks(20, 0);
+    console.log(response)
+    if (response.data.code == 200200)
+    // 假设 response.data 是包含反馈信息的数组
+      rows.value = response.data.data;  // 将反馈数据存储在 rows 中
+    else {
+      alert(response.data.msg)
+      setInterval(()=>{
+        router.push({name:"view"})
+      }, 5000)
+    }
   } catch (error) {
     console.error('获取反馈数据失败:', error);
   }
@@ -38,14 +37,15 @@ onMounted(() => {
   <header>
     <!-- 左侧菜单栏 -->
     <cus-column
-      content="内容"
-      :items="[
-        { title: '未处理反馈', select: () => {} },
-        { title: '已处理反馈', select: () => {} },
-        { title: '垃圾信息', select: () => {} }
-      ]"
-      :default="1"
-    ></cus-column>
+    content="内容"
+    :items="[
+      { title: '个人中心', to: { name: 'admincenter' } },
+      { title: '未处理反馈', to: { name: 'unprocessed' } },
+      { title: '已处理反馈', to: { name: 'processed' } },
+      { title: '垃圾信息', to: { name: 'spam' } }
+    ]"
+    :default="2"
+  ></cus-column>
   </header>
 
   <!-- 右侧表格 -->

@@ -23,10 +23,10 @@ export const getHistory = (admin_id: string, limit: number, offset: number) => {
  * @param userID 修改者的学号/账号
  * @param value 修改的值
  */
-export const putAdminProfile = (name: string, userID: string, value: string) => {
-  return request.put('admin/profile/' + name, {
-    user_id: userID,
-    value
+export const putAdminProfile = (name: string, value: string) => {
+  return request.put('user/profile/', {
+    object: name,
+    new_value: value
   })
 }
 
@@ -35,13 +35,31 @@ export const putAdminProfile = (name: string, userID: string, value: string) => 
  * @param userID 请求者的学号/账号
  */
 export const getProfile = (userID: string) => {
-  return request.get('admin/profile?user_id=' + userID)
+  return request.get('user/profile?user_id=' + userID)
 }
 
 /**
- * @description 获取反馈
- * @param admin_id 反馈序号
+ * @description 获取未处理反馈
+ * @param page 页数
+ * @param limit 限制
  */
-export const getfeedbacks = (code: string) => {
-  return request.get('admin/?code_id=' +code)
+export const getUnFeedbacks = (page:number, limit:number) => {
+  return request.get(`feedback/select?limit=${limit}&page=${page}&status=0`)
+}
+/**
+ * @description 获取处理过的反馈
+ * @param page 页数
+ * @param limit 限制
+ */
+export const getProFeedbacks = (page:number, limit:number) => {
+  return request.get(`feedback/select?page=${page}&limit=${limit}&status=1`)
+}
+
+/**
+ * @description 获取处理过的反馈
+ * @param page 页数
+ * @param limit 限制
+ */
+export const getSpamFeedbacks = (page:number, limit:number) => {
+  return request.get(`feedback/select?page=${page}&limit=${limit}&rubbish=0`)
 }
