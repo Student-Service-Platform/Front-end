@@ -32,6 +32,10 @@ const fetchFeedbacks = async () => {
 onMounted(() => {
   fetchFeedbacks();
 });
+
+function jump(id:number) {
+  router.push({name: "unExp", query: { id }})
+}
 </script>
 <template>
   <header>
@@ -73,7 +77,7 @@ onMounted(() => {
       <cus-box :input="false" :content="row.urgency" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
       <cus-box :input="false" :content="row.if_anonymous ? '是' : '否'" h="60px" w="129px" :textAlign="['center', 'top']"></cus-box>
       <cus-box :input="false" h="60px" w="129px">
-        <cus-button2 content="查看" style="left:30.5px;top:19.3px;"></cus-button2>
+        <cus-button2 content="查看" style="left:30.5px;top:19.3px;" :click="()=>{jump(row.id)}"></cus-button2>
       </cus-box>
     </div>
   </div>

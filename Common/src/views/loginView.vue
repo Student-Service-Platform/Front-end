@@ -34,6 +34,7 @@ export default {
     login() {
       if (this.cfc != this.cfm.toUpperCase()) {
         alert('验证码错误')
+        this.$refs.verify.draw()
         return
       }
       if (this.admin) {
@@ -98,6 +99,7 @@ export default {
     ></cus-input>
     <verify-code
       style="top: 205px; right: 46.5px"
+      ref="verify"
       @change="
         (val: string) => {
           cfc = val

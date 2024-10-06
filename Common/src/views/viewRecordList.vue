@@ -31,6 +31,10 @@ const fetchFeedbacks = async () => {
 onMounted(() => {
   fetchFeedbacks();
 });
+
+function jump(id:number) {
+  router.push({name: "list", query: { id }})
+}
 </script>
 <template>
   <header>
@@ -73,7 +77,7 @@ onMounted(() => {
       <cus-box :input="false" :content="row.username == '匿名用户' ? '是' : '否'" h="60px" w="115px" :textAlign="['center']"></cus-box>
       <cus-box :input="false" :content="row.status? '是' : '否'" h="60px" w="115px" :textAlign="['center']"></cus-box>
       <cus-box :input="false" h="60px" w="129px">
-        <cus-button2 content="查看" style="left:30.5px;top:19.3px;"></cus-button2>
+        <cus-button2 content="查看" style="left:30.5px;top:19.3px;" :click="()=>{jump(row.id)}"></cus-button2>
       </cus-box>
     </div>
   </div>
