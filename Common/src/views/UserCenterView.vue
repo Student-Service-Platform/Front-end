@@ -27,7 +27,9 @@ export default {
         user_id: "",
         name: "",
         phone: "",
-        mail: ""
+        mail: "",
+        getProfile, 
+        putProfile
       },
       loading: true,
       origin:{
@@ -65,6 +67,7 @@ export default {
         putProfile("password",this.pwd).then(res=>{alert(res.data.msg)})
     }
    }
+   
 }
 </script>
 
