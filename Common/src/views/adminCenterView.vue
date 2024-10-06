@@ -1,7 +1,7 @@
 <!--
 @description: 普通管理员个人界面
 -->
-<script setup lang="ts">
+<script lang="ts">
 import CusInput from '@/ui/CusInput.vue'
 import CusButton from '@/ui/CusButton.vue'
 import CusColumn from '@/ui/CusColumn.vue'
@@ -11,6 +11,31 @@ import user from '@/assets/user.png'
 import Mail from '@/assets/Mail.png'
 import PhoneNumber from '@/assets/PhoneNumber.png'
 import IconStepsFinished from '@/assets/IconStepsFinished.png'
+import { getProfile, putAdminProfile,getAdminGrade } from '@/apis/src/admin'
+
+
+export default {
+  data() {
+    return {
+      AugmentedReality,
+      password,
+      user,
+      Mail,
+      PhoneNumber,
+      IconStepsFinished,
+      grade: '',            // 评分
+      userId: '',           // ID
+      username: '',         // 用户名
+      passwordInput: '',    // 密码
+      email: '',            // 邮箱
+      phoneNumber: '',      // 手机号
+    };
+  },
+  components: {
+    CusButton,
+    CusInput
+  }
+}
 </script>
 
 <template>
@@ -33,18 +58,21 @@ import IconStepsFinished from '@/assets/IconStepsFinished.png'
       class="inputjntm1 disabled-input1"
       :path="IconStepsFinished"
       content="管理员评分"
+      v-model="grade"
     ></cus-input>
     <cus-input
       style="top: 29%"
       class="inputjntm1 disabled-input1"
       :path="AugmentedReality"
       content="管理员ID"
+      v-model="userId"
     ></cus-input>
     <cus-input
       style="top: 40%"
       class="inputjntm1"
       :path="user"
       content="管理员用户名"
+      v-model="username"
     ></cus-input>
     <cus-input
       style="top: 51%"
@@ -52,6 +80,7 @@ import IconStepsFinished from '@/assets/IconStepsFinished.png'
       :path="password"
       content="请更改密码"
       required
+      v-model="passwordInput"
     ></cus-input>
     <cus-input
       style="top: 62%"
@@ -59,6 +88,7 @@ import IconStepsFinished from '@/assets/IconStepsFinished.png'
       :path="Mail"
       content="请更改邮箱"
       required
+      v-model="email"
     ></cus-input>
     <cus-input
       style="top: 73%"
@@ -66,6 +96,7 @@ import IconStepsFinished from '@/assets/IconStepsFinished.png'
       :path="PhoneNumber"
       content="请更改手机号"
       required
+      v-model="phoneNumber"
     ></cus-input>
     <cus-button class="save-btn-jntm1" content="保存更改"></cus-button>
   </div>
