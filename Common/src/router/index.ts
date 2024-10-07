@@ -27,7 +27,7 @@ import {
   adminManagementList,
   largeScreen
 } from '@/views'
-import { AdminGuard, UserGuard } from './guard'
+import { AdminGuard, SuperGuard, UserGuard } from './guard'
 import { labelInner } from 'echarts/types/src/label/labelStyle.js'
 
 const router = createRouter({
@@ -116,50 +116,59 @@ const router = createRouter({
     {
       name: "suProList",
       path: "/superadmin/processed",
-      component: suProccessedFeedbackList
+      component: suProccessedFeedbackList,
+      beforeEnter: SuperGuard
     }
     ,
     {
       name: "suProExp",
       path: "/superadmin/processed/",
-      component: suProcessedFeedbackExpansion
+      component: suProcessedFeedbackExpansion,
+      beforeEnter: SuperGuard
     }
     ,
     {
       name: "suUnList",
       path: "/superadmin/unprocessec",
-      component: suUnprocessedFeedbackList
+      component: suUnprocessedFeedbackList,
+      beforeEnter: SuperGuard
     }
     ,
     {
       name: "suUnExp",
       path: "/superadmin/unprocessed/",
-      component: suUnprocessedFeedbackList
+      component: suUnprocessedFeedbackList,
+      beforeEnter: SuperGuard
     },
     {
       name: "suSpamList",
       path: "/superadmin/spam",
-      component: suSpamFeedbacklist
+      component: suSpamFeedbacklist,
+      beforeEnter: SuperGuard
     },
     {
       name: "suSpamExp",
       path: "/superadmin/spam/",
-      component: suSpamReview
+      component: suSpamReview,
+      beforeEnter: SuperGuard
     },
     {
       name: "userManage",
       path: "/superadmin/manage/user",
-      component: userManagementList
+      component: userManagementList,
+      beforeEnter: SuperGuard
     },
     {
       name: "userManage",
       path: "/superadmin/manage/admin",
-      component: adminManagementList
+      component: adminManagementList,
+      beforeEnter: SuperGuard
     },
     {
       name: "screen",
       path: "/superadmin/",
-      component: largeScreen
+      component: largeScreen,
+      beforeEnter: SuperGuard
     }
     
 
