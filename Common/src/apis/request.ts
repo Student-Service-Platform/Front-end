@@ -11,16 +11,17 @@ import type { AxiosInstance } from 'axios'
 
 const service: AxiosInstance = axios.create({
   baseURL: `/api/`,
-  timeout: 5000,
-  headers: {
-    Authorization: localStorage.getItem('token') || '' // 添加认证
-  }
+  timeout: 5000
 })
 
 //响应拦截器
 service.interceptors.response.use(
   (res) => {
-    return Promise.resolve(res)
+    const token = localStorage.getItem('token');
+    if (token) {
+      res.headers.Authorization = token;
+    }
+    return res
   },
   (error) => {
     return Promise.reject(error)

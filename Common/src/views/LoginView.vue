@@ -8,6 +8,7 @@ import password from '@/assets/password.png'
 import code from '@/assets/code.png'
 
 import { authLogin, authAdmin } from '@/apis/src/auth'
+import axios from 'axios'
 
 export default {
   data() {

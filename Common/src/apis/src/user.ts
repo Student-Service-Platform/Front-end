@@ -31,11 +31,11 @@ export const getProfile = (userID: string) => {
 /**
  * @description 获取反馈
  * @param limit 限制获取的条数
- * @param offset 偏移量
+ * @param page 偏移量
  */
-// export const getProfeedbacks = (user_id: string,limit: number, offset: number) => {
-//   return request.get(`user/feedback?user_id=${user_id}&limit=${limit}&offset=${offset}`)
-// }
+export const getProfeedbacks = (user_id: string,limit: number, page: number) => {
+  return request.get(`user/feedback?user_id=${user_id}&limit=${limit}&page=${page}`)
+}
 
 /**
  * @description 上传反馈

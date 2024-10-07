@@ -19,7 +19,7 @@ import {
   processedFeedbackExpansion,
   unrocessedFeedbackExpansion
 } from '@/views'
-import { loginGuard } from './guard'
+import { UserGuard } from './guard'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,7 +42,8 @@ const router = createRouter({
     {
       name: 'user',
       path: '/user',
-      component: UserCenterView
+      component: UserCenterView,
+      beforeEnter: UserGuard
     },
     {
       name: 'record',
