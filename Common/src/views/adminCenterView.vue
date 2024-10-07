@@ -70,13 +70,13 @@ export default {
         putProfile("mail",this.data.mail).then(res=>{alert(res.data.msg)})
       if(this.pwd != "")
         putProfile("password",this.pwd).then(res=>{alert(res.data.msg)})
-    }
-   },
-    logout(){
+    },
+    logout() {
       this.$cookies.remove("user_id")
       localStorage.clear()
       this.$router.push("login")
     }
+   }
 }
 </script>
 
@@ -142,7 +142,7 @@ export default {
       required
       ></cus-input>
     <cus-button class="btn" style="bottom: 62px;" content="保存更改" :click="saveProfile"></cus-button>
-    <cus-button class="btn" style="bottom: 12px;" content="退出登录" @click="logout"></cus-button>
+    <cus-button class="btn" style="bottom: 12px;" content="退出登录" :click="logout"></cus-button>
   </div>
 </template>
 
