@@ -42,11 +42,12 @@ export const authAdmin = (username: string, password: string) => {
  * @param mail_auth 邮箱
  * @param phone 手机号码
  */
-export const authRegister = (user_id: string,username: string,password: string,mail_auth: boolean,phone: string) => {
+export const authRegister = (user_id: string,username: string,password: string,mail:string, mail_auth: boolean,phone: string) => {
     return request.post('auth/reg', {
       user_id,
       username,
       password,
+      mail,
       mail_auth,
       phone
     })

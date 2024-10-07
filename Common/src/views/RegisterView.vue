@@ -80,7 +80,7 @@ export default {
         return;
       }
       try {
-        authRegister(this.userId, this.username, this.passwordInput, true, this.phoneNumber).then(res=>{
+        authRegister(this.userId, this.username, this.passwordInput, this.email, true, this.phoneNumber).then(res=>{
           if (res.data.code == 200200) {
             alert("注册成功")
             this.$router.push({name:"login"})
@@ -93,7 +93,10 @@ export default {
         alert("注册失败，请检查输入的信息。");
         console.error(error);
       }
-    }
+    },
+    goToLogin(){
+      this.$router.push({name: "login"})
+    },
   }
 };
 </script>
@@ -147,7 +150,7 @@ export default {
       required
     ></cus-input>
     
-    <cus-input
+    <!-- <cus-input
       style="top: 65%"
       class="input"
       :path="code"
@@ -155,10 +158,10 @@ export default {
       v-model="verificationCode"
       width="200px"
       required
-    ></cus-input>
+    ></cus-input> -->
     
     <cus-input
-      style="top: 75%"
+      style="top: 65%"
       class="input"
       :path="PhoneNumber"
       content="请输入手机号"
@@ -167,7 +170,8 @@ export default {
     ></cus-input>
     
     <cus-button class="register-btn" content="注册" @click="register"></cus-button>
-    <cus-button class="code-btn" content="发送验证码"></cus-button>
+    <p type="button" style="right: 90px;top:79%;" @click="goToLogin">回到登录</p>
+    <!-- <cus-button class="code-btn" content="发送验证码"></cus-button> -->
   </div>
 </template>
 
@@ -214,5 +218,16 @@ export default {
   top: 65%;
   z-index: 3;
   right: 61px;
+}
+div > p {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 46.5px;
+  transform: translateX(50%);
+  top: 265px;
+  color: rgb(140, 140, 140);
+  font-weight: 400;
+  cursor: pointer;
 }
 </style>
