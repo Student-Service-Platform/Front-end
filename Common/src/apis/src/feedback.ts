@@ -8,27 +8,25 @@
 import request from '../request'
 
 /**
- * @description 筛选并获取反馈
- * @param admin_id 用户id
- * @param category 分组
+ * @description 筛选并获取反馈 ok
+ * @param rubbish 分组 0垃圾 >=1还不是垃圾
  * @param limit 限制
- * @param offset 偏移
- * @param status 状态
+ * @param page 偏移
+ * @param status 状态 0未处理 >=1已处理
  */
 export const getFeedbacks = (
-  admin_id: string,
-  category: number,
   limit: number,
-  offset: number,
-  status: boolean
+  page: number,
+  status: boolean,
+  rubbish: number
 ) => {
   return request.get(
-    `feedback?admin_id=${admin_id}&status=${status}&category=${category}&limit=${limit}&offset=${offset}`
+    `feedback/select?status=${status}&limit=${limit}&page=${page}&rubbish=${rubbish}`
   )
 }
 
 /**
- * @description 获取指定反馈
+ * @description 获取指定反馈 ok
  * @param id 原帖id 可选
  * @param userID 回复者id
  */
@@ -65,3 +63,17 @@ export const postFeedbackAdmin = (id: string, action: boolean) => {
 export const putFeedbackMark = (id: string, confirmation?: boolean) => {
   return request.put(`feedback/${id}/mark?confirmation=${confirmation}`)
 }
+
+/**
+ * @description 评分 ok
+ * @param id 原帖id 可选
+ * @param grade 评分
+ * @param grade_content 评价
+ */
+export const putEvaluation = (id: string, grade:boolean, grade_content:string) => {
+  return request.put(`feedback/${id}/evaluation`,{
+    grade,
+    grade_content
+  })
+}
+
