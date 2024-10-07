@@ -19,9 +19,8 @@ const fetchFeedbacks = async () => {
       rows.value = response.data.data;  // 将反馈数据存储在 rows 中
     else {
       alert(response.data.msg)
-      setInterval(()=>{
-        router.push({name:"view"})
-      }, 5000)
+        router.push({name:"admincenter"})
+
     }
   } catch (error) {
     console.error('获取反馈数据失败:', error);

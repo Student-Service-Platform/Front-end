@@ -70,3 +70,14 @@ export const SuperGuard = (
     next({name: "login"})
   })
 }
+
+export const GuestGuard = (
+  to: RouteLocationNormalizedGeneric,
+  from: RouteLocationNormalizedGeneric,
+  next: Function
+) => {
+  if ( cookies.get("user_id") )
+    next(to)
+  else
+    next({name:"user"})
+}

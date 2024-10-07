@@ -197,7 +197,7 @@ export default {
     <div style="display: flex; position: relative">
       <cus-box
         :input="false"
-        content="回复"
+        content="评价"
         h="133px"
         w="141px"
         :textAlign="['center', 'top']"
@@ -206,12 +206,11 @@ export default {
       <!-- 使用flex布局，显示复选框和评分数字 -->
       <div style="position: relative; width: 704px">
         <cus-box :input="false" h="39px" w="704px"></cus-box>
-        <span style="position: absolute; left: 10px; top: 10.5px">等级</span>
-        <cus-button2 content="responce.eval_grade" left:30px top:10.5px></cus-button2>  
+        <span style="position: absolute; left: 10px; top: 10.5px">{{ data.grade }}</span>
 
         <cus-box
           :input="false"
-          content="responce.evaluation"
+          :content="data.grade_content"
           h="90.5px"
           w="701px"
           :textAlign="['left', 'top']"

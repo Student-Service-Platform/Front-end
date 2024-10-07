@@ -7,7 +7,7 @@ import CusButton2 from '@/ui/CusButton2.vue'
 import CusColumn from '@/ui/CusColumn.vue' // 自定义列组件，显示选项菜单
 import CusCheckbox from '@/ui/CusCheckbox.vue' // 自定义复选框组件
 import User from '@/assets/User.png' // 引入用户图片
-import { getFeedback } from '@/apis/src/feedback'
+import { getFeedback, postFeedbackAdmin, postReply, putFeedbackMark } from '@/apis/src/feedback'
 
 
 export default {
@@ -40,6 +40,7 @@ export default {
         "status": false,
       },
       reply: [],
+      newReply:"",
       rate: 5
     }
   },
@@ -66,6 +67,36 @@ export default {
         return s
       }
     }
+  },
+  methods:{
+    adminFeedback() {
+      postFeedbackAdmin(this.$route.query.id, 1).then(res=>{
+        alert(res.data.msg)
+      }).catch(err=>{
+        alert(err)
+      })
+    },
+    unAdminFeedback() {
+      postFeedbackAdmin(this.$route.query.id, 0).then(res=>{
+        alert(res.data.msg)
+      }).catch(err=>{
+        alert(err)
+      })
+    },
+    spamFeedback() {
+      putFeedbackMark(this.$route.query.id).then(res=>{
+        alert(res.data.msg)
+      }).catch(err=>{
+        alert(err)
+      })
+    },
+    submit() {
+      postReply(this.$route.query.id,this.newReply).then(res=>{
+        alert(res.data.msg)
+      }).catch(err=>{
+        alert(err)
+      })
+    }
   }
 }
 </script>
@@ -87,9 +118,9 @@ export default {
   <div style="position: absolute; left: 400px; top: 70px">
     <div style="display: flex">
       <cus-box :input="false" h="60px" w="845px" :textAlign="['center', 'top']">
-        <cus-button2 style="left: 10%; top: 19.3px" content="接单"></cus-button2>
-        <cus-button2 style="left: 42%; top: 19.3px" content="取消接单"></cus-button2>
-        <cus-button2 style="left: 80%; top: 19.3px" content="垃圾信息"></cus-button2>
+        <cus-button2 style="left: 10%; top: 19.3px" content="接单" :click="adminFeedback"></cus-button2>
+        <cus-button2 style="left: 42%; top: 19.3px" content="取消接单" :click="unAdminFeedback"></cus-button2>
+        <cus-button2 style="left: 80%; top: 19.3px" content="垃圾信息" :click="spamFeedback"></cus-button2>
       </cus-box>
     </div>
     <!-- 第一行：标题 -->
@@ -196,6 +227,7 @@ export default {
       <cus-box
         :input="true"
         content="请输入回复"
+        v-model="newReply"
         h="144px"
         w="704px"
         :textAlign="['left', 'top']"
@@ -204,7 +236,7 @@ export default {
     <cus-button content="提交评价" style="position: absolute; top: 600px; left: 268px"></cus-button>
     <div style="display: flex">
       <cus-box :input="false" h="80px" w="845px" :textAlign="['center', 'top']">
-        <cus-button style="left: 30%; top: 19.3px" content="提交"></cus-button>
+        <cus-button style="left: 30%; top: 19.3px" content="提交" :click="submit"></cus-button>
       </cus-box>
     </div>
   </div>
