@@ -8,20 +8,33 @@ Latest: 2024.10.2 18:50
 <script lang="ts">
 import home from '@/assets/home.png'
 import userIcon from '@/assets/User.png'
+import router from '@/router';
 
 export default {
-  props: {
-    user: {
-      type: {
-        userID: String,
-        userName: String
-      }
-    }
-  },
   data() {
     return {
       home: home,
-      userIcon: userIcon
+      userIcon: userIcon,
+      userID: '',
+      router:router.currentRoute
+    }
+  },
+  mounted() {
+    this.reload()
+  },
+  watch:{
+    router(){
+      this.reload()
+      console.log("re")
+    }
+  },
+  methods:{
+    reload() {
+      const id = this.$cookies.get("user_id")
+    if (id)
+      this.userID = id
+    else
+      this.userID = ""
     }
   }
 }
@@ -34,8 +47,8 @@ export default {
       <span>学生综合服务系统</span>
     </div>
     <input class="navSearch" v-if="false" />
-    <div class="navUser" v-if="user">
-      <span>{{ user.userName }}</span>
+    <div class="navUser" v-if="userID">
+      <span>{{ userID }}</span>
       <img :src="userIcon" />
     </div>
   </div>
@@ -47,7 +60,7 @@ export default {
   right: 0;
   top: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   height: 62px;
   background: rgb(28, 30, 32);
 }

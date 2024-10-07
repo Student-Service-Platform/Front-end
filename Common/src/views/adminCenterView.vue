@@ -74,7 +74,7 @@ export default {
     logout() {
       this.$cookies.remove("user_id")
       localStorage.clear()
-      this.$router.push("login")
+      this.$router.push({name:"login"})
     }
    }
 }

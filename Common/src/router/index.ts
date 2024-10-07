@@ -178,6 +178,6 @@ const router = createRouter({
     
 
   ]
-}) //.beforeEach(loginGuard)
+})
 
 export default router

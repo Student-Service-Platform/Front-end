@@ -33,8 +33,8 @@ export const getProfile = (userID: string) => {
  * @param limit 限制获取的条数
  * @param page 偏移量
  */
-export const getProfeedbacks = (user_id: string,limit: number, page: number) => {
-  return request.get(`user/feedback?user_id=${user_id}&limit=${limit}&page=${page}`)
+export const getProfeedbacks = (limit: number, page: number) => {
+  return request.get(`user/feedback?limit=${limit}&page=${page}`)
 }
 
 /**
