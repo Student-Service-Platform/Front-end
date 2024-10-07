@@ -98,6 +98,7 @@ export default {
       class="inputjntm disabled-input"
       :path="AugmentedReality"
       content="用户ID"
+      v-model="data.user_id"
       required
     ></cus-input>
     <cus-input
@@ -105,6 +106,7 @@ export default {
       class="inputjntm"
       :path="user"
       content="请更改用户名"
+      v-model="data.name"
       required
     ></cus-input>
     <cus-input
@@ -112,6 +114,7 @@ export default {
       class="inputjntm"
       :path="password"
       content="请更改密码"
+      v-model="pwd"
       required
     ></cus-input>
     <cus-input
@@ -119,6 +122,7 @@ export default {
       class="inputjntm"
       :path="Mail"
       content="请更改邮箱"
+      v-model="data.mail"
       required
     ></cus-input>
     <cus-input
@@ -126,6 +130,7 @@ export default {
       class="inputjntm"
       :path="PhoneNumber"
       content="请更改手机号"
+      v-model="data.phone"
       required
     ></cus-input>
     <cus-button class="save-btn-jntm" content="保存更改" @click="saveProfile"></cus-button>
@@ -181,7 +186,7 @@ export default {
   left: 50%;
   top: 88%;
 }
-.disabled-input input {
+.disabled-input{
   pointer-events: none;
   background-color: #f9f9f9;
   opacity: 0.6;

@@ -48,17 +48,20 @@ const router = createRouter({
     {
       name: 'record',
       path: '/user/post',
-      component: postRecord
+      component: postRecord,
+      beforeEnter: UserGuard
     },
     {
       name: 'view',
       path: '/user/list',
-      component: viewRecordList
+      component: viewRecordList,
+      beforeEnter: UserGuard
     },
     {
       name: 'exp',
       path: '/user/list/',
-      component: recordExpansion
+      component: recordExpansion,
+      beforeEnter: UserGuard
     },
     {
       name: 'admincenter',

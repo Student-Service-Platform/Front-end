@@ -13,14 +13,13 @@ const code = ref<number>(0);       // 用于存储反馈序号
 const fetchFeedbacks = async () => {
   try {
     const response = await getProfeedbacks("123", 20, 0);
+    console.log(response)
     if (response.data.code == 200200)
     // 假设 response.data 是包含反馈信息的数组
       rows.value = response.data.data;  // 将反馈数据存储在 rows 中
     else {
       alert(response.data.msg)
-      setInterval(()=>{
-        router.push({name:"view"})
-      }, 5000)
+      router.push({name:"user"})
     }
   } catch (error) {
     console.error('获取反馈数据失败:', error);

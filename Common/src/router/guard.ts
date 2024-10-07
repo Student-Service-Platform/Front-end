@@ -8,7 +8,6 @@ export const UserGuard = (
   next: Function
 ) => {
   postUser().then(res=>{
-    console.log(res)
     if (res.data.code == 200401) { // 登录信息无效或未登录
       localStorage.clear()
       cookies.remove("user_id")
