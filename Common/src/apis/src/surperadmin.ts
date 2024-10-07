@@ -48,3 +48,13 @@ export const getRubbish = (page:Number,limit:Number)=>{
 export const putRubbish = (id:Number, action:Number)=>{
   return request.put(`superadmin/workbench?id=${id}&action=${action}`)
 }
+
+/**
+ * @description 获取对应用户
+ * @param type admin/other
+ * @param page 
+ * @param limit 
+ */
+export const getAllUser = (type:String,page:Number,limit:Number) => {
+  return request.get(`superadmin/U&A?type=${type}&page=${page}&limit=${limit}`)
+}
