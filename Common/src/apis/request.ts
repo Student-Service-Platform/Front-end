@@ -14,14 +14,17 @@ const service: AxiosInstance = axios.create({
   timeout: 5000
 })
 
+service.interceptors.request.use(config=>{
+  const token = localStorage.getItem("token")
+  if (token)
+    config.headers.Authorization = localStorage.getItem("token")
+  return config
+})
+
 //响应拦截器
 service.interceptors.response.use(
   (res) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      res.headers.Authorization = token;
-    }
-    return res
+    return Promise.resolve(res)
   },
   (error) => {
     return Promise.reject(error)
