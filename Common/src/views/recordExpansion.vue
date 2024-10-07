@@ -5,7 +5,7 @@ import CusButton from '@/ui/CusButton.vue' // 自定义按钮组件
 import CusColumn from '@/ui/CusColumn.vue' // 自定义列组件，显示选项菜单
 import CusCheckbox from '@/ui/CusCheckbox.vue' // 自定义复选框组件
 import User from '@/assets/User.png' // 引入用户图片
-import { getFeedback } from '@/apis/src/feedback'
+import { getFeedback, putEvaluation } from '@/apis/src/feedback'
 
 
 export default {
@@ -37,7 +37,8 @@ export default {
         "status": false,
       },
       reply: [],
-      rate: 5
+      rate: 5,
+      content: ""
     }
   },
   mounted() {
@@ -62,6 +63,15 @@ export default {
         }
         return s
       }
+    }
+  },
+  methods: {
+    submit() {
+      putEvaluation(this.$router.query.id, this.rate, this.content).then(res=>{
+        alert(res.data.msg)
+      }).catch(err=>{
+        alert(err)
+      })
     }
   }
 }
@@ -204,23 +214,24 @@ export default {
       <div style="display: flex; flex-direction: column; width: 704px">
         <cus-box :input="false" h="39px" w="704px" :textAlign="['left', 'top']">
           <div class="info">
-            <CusCheckbox style="left: 10%" content="5"></CusCheckbox>
-            <CusCheckbox style="left: 25%" content="4"></CusCheckbox>
-            <CusCheckbox style="left: 40%" content="3"></CusCheckbox>
-            <CusCheckbox style="left: 55%" content="2"></CusCheckbox>
-            <CusCheckbox style="left: 70%" content="1"></CusCheckbox>
+            <CusCheckbox style="left: 10%" content="5" v-model:group="rate" :value="5"></CusCheckbox>
+            <CusCheckbox style="left: 25%" content="4" v-model:group="rate" :value="4"></CusCheckbox>
+            <CusCheckbox style="left: 40%" content="3" v-model:group="rate" :value="3"></CusCheckbox>
+            <CusCheckbox style="left: 55%" content="2" v-model:group="rate" :value="2"></CusCheckbox>
+            <CusCheckbox style="left: 70%" content="1" v-model:group="rate" :value="1"></CusCheckbox>
           </div>
         </cus-box>
         <cus-box
           :input="true"
           content="请输入评价"
+          v-model="content"
           h="96px"
           w="704px"
           :textAlign="['left', 'top']"
         ></cus-box>
       </div>
     </div>
-    <cus-button content="提交评价" style="position: absolute; top: 670px; left: 268px"></cus-button>
+    <cus-button content="提交评价" style="position: absolute; top: 670px; left: 268px" :click="submit"></cus-button>
     <!-- 第八行：提交评价按钮 -->
     <!-- <div style="display: flex; justify-content: center; margin-top: 20px;">
       <cus-button2 content="提交评价"></cus-button2>

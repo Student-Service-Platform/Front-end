@@ -70,7 +70,7 @@ export const putFeedbackMark = (id: string, confirmation?: boolean) => {
  * @param grade 评分
  * @param grade_content 评价
  */
-export const putEvaluation = (id: string, grade:boolean, grade_content:string) => {
+export const putEvaluation = (id: string, grade:number, grade_content:string) => {
   return request.put(`feedback/${id}/evaluation`,{
     grade,
     grade_content

@@ -12,7 +12,7 @@ const code = ref<number>(0);       // 用于存储反馈序号
 // 定义获取反馈数据的函数
 const fetchFeedbacks = async () => {
   try {
-    const response = await getProfeedbacks("123", 20, 0);
+    const response = await getProfeedbacks(20, 0);
     console.log(response)
     if (response.data.code == 200200)
     // 假设 response.data 是包含反馈信息的数组
@@ -32,7 +32,7 @@ onMounted(() => {
 });
 
 function jump(id:number) {
-  router.push({name: "list", query: { id }})
+  router.push({name: "exp", query: { id: id }})
 }
 </script>
 <template>
