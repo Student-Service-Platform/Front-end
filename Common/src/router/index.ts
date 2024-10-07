@@ -17,9 +17,18 @@ import {
   UserCenterView,
   PasswordResetView,
   processedFeedbackExpansion,
-  unrocessedFeedbackExpansion
+  unrocessedFeedbackExpansion,
+  suUnprocessedFeedbackList,
+  suProccessedFeedbackList,
+  suProcessedFeedbackExpansion,
+  suSpamFeedbacklist,
+  suSpamReview,
+  userManagementList,
+  adminManagementList,
+  largeScreen
 } from '@/views'
-import { UserGuard } from './guard'
+import { AdminGuard, UserGuard } from './guard'
+import { labelInner } from 'echarts/types/src/label/labelStyle.js'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -66,38 +75,94 @@ const router = createRouter({
     {
       name: 'admincenter',
       path: '/admin/',
-      component: adminCenterView
+      component: adminCenterView,
+      beforeEnter: AdminGuard
     },
     {
       name: 'unprocessed',
       path: '/admin/unprocessed',
-      component: unprocessedFeedbackList
+      component: unprocessedFeedbackList,
+      beforeEnter: AdminGuard
     },
     {
       name: 'unExp',
       path: '/admin/unprocessed/',
-      component: unrocessedFeedbackExpansion
+      component: unrocessedFeedbackExpansion,
+      beforeEnter: AdminGuard
     },
     {
       name: 'processed',
       path: '/admin/processed',
-      component: processedFeedbackList
+      component: processedFeedbackList,
+      beforeEnter: AdminGuard
     },
     {
       name: 'proExp',
       path: '/admin/processed/',
-      component: processedFeedbackExpansion
+      component: processedFeedbackExpansion,
+      beforeEnter: AdminGuard
     },
     {
       name: 'spam',
       path: '/admin/spam',
-      component: spamFeedbackList
+      component: spamFeedbackList,
+      beforeEnter: AdminGuard
     },
     {
         name:'passwordreset',
         path: '/resetpwd',
         component: PasswordResetView
+    },
+    {
+      name: "suProList",
+      path: "/superadmin/processed",
+      component: suProccessedFeedbackList
     }
+    ,
+    {
+      name: "suProExp",
+      path: "/superadmin/processed/",
+      component: suProcessedFeedbackExpansion
+    }
+    ,
+    {
+      name: "suUnList",
+      path: "/superadmin/unprocessec",
+      component: suUnprocessedFeedbackList
+    }
+    ,
+    {
+      name: "suUnExp",
+      path: "/superadmin/unprocessed/",
+      component: suUnprocessedFeedbackList
+    },
+    {
+      name: "suSpamList",
+      path: "/superadmin/spam",
+      component: suSpamFeedbacklist
+    },
+    {
+      name: "suSpamExp",
+      path: "/superadmin/spam/",
+      component: suSpamReview
+    },
+    {
+      name: "userManage",
+      path: "/superadmin/manage/user",
+      component: userManagementList
+    },
+    {
+      name: "userManage",
+      path: "/superadmin/manage/admin",
+      component: adminManagementList
+    },
+    {
+      name: "screen",
+      path: "/superadmin/",
+      component: largeScreen
+    }
+    
+
   ]
 }) //.beforeEach(loginGuard)
 

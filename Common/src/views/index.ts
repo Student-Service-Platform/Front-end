@@ -17,6 +17,17 @@ import unrocessedFeedbackExpansion from './unrocessedFeedbackExpansion.vue'
 import spamFeedbackList from './spamFeedbackList.vue'
 import spamFeedbackExpansion from './spamFeedbackExpansion.vue'
 import adminCenterView from './adminCenterView.vue'
+// 超管相关
+import suProccessedFeedbackList from './suProccessedFeedbackList.vue'
+import suProcessedFeedbackExpansion from './suProcessedFeedbackExpansion .vue'
+import suUnprocessedFeedbackList from './suUnprocessedFeedbackList.vue'
+import suUnrocessedFeedbackExpansion from './suUnrocessedFeedbackExpansion.vue'
+import suSpamFeedbacklist from './suSpamFeedbacklist.vue'
+import suSpamReview from './suSpamReview.vue',
+import userManagementList from './userManagementList.vue',
+import adminManagementList from './adminManagementList.vue',
+import largeScreen from './largeScreen.vue'
+
 
 export {
   LoginView,
@@ -33,5 +44,14 @@ export {
   spamFeedbackExpansion,
   spamFeedbackList,
   adminCenterView,
-  PasswordResetView
+  PasswordResetView,
+  suProccessedFeedbackList,
+  suProcessedFeedbackExpansion,
+  suUnprocessedFeedbackList,
+  suUnrocessedFeedbackExpansion,
+  suSpamFeedbacklist,
+  suSpamReview,
+  userManagementList,
+  adminManagementList,
+  largeScreen
 }
