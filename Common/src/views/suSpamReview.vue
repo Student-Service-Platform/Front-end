@@ -58,7 +58,7 @@
   },
   computed: {
     replies: {
-      get(this) : string {
+      get() {
         if (this.reply == null)
           return "无"
         let s = ""
@@ -202,9 +202,7 @@
         <cus-button @click="confirmRubbish" style="left: 10%; top: 19.3px" content="垃圾信息确认"></cus-button>
         <cus-button @click="revokeRubbish" style="left: 55%; top: 19.3px" content="垃圾信息撤销"></cus-button>
       </cus-box>
-    </div>
-   </div>
-   
+    </div>   
    <RouterView />
  </template>
  

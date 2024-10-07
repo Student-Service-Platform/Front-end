@@ -23,9 +23,9 @@ import suProcessedFeedbackExpansion from './suProcessedFeedbackExpansion .vue'
 import suUnprocessedFeedbackList from './suUnprocessedFeedbackList.vue'
 import suUnrocessedFeedbackExpansion from './suUnrocessedFeedbackExpansion.vue'
 import suSpamFeedbacklist from './suSpamFeedbacklist.vue'
-import suSpamReview from './suSpamReview.vue',
-import userManagementList from './userManagementList.vue',
-import adminManagementList from './adminManagementList.vue',
+import suSpamReview from './suSpamReview.vue'
+import userManagementList from './userManagementList.vue'
+import adminManagementList from './adminManagementList.vue'
 import largeScreen from './largeScreen.vue'
 
 

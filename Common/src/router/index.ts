@@ -28,7 +28,6 @@ import {
   largeScreen
 } from '@/views'
 import { AdminGuard, SuperGuard, UserGuard } from './guard'
-import { labelInner } from 'echarts/types/src/label/labelStyle.js'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -106,6 +105,12 @@ const router = createRouter({
       name: 'spam',
       path: '/admin/spam',
       component: spamFeedbackList,
+      beforeEnter: AdminGuard
+    },
+    {
+      name: 'spamExp',
+      path: '/admin/spam/',
+      component: spamFeedbackExpansion,
       beforeEnter: AdminGuard
     },
     {
