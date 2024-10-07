@@ -39,6 +39,11 @@ export default {
 
       this.errorMsg = '';
 
+      if(this.username=="匿名用户") {
+        this.errorMsg = '请输入有效的用户名，"匿名用户"不是有效的选项';
+        return false;
+      }
+
       if (!/^\d{12}$/.test(this.userId)) {
         this.errorMsg = '学号必须是12位数字';
         return false;
@@ -67,9 +72,7 @@ export default {
 
       return true;
     },
-    goToLogin(){
-      this.$router.push({name: "login"})
-    },
+
     async register() {
       const isValid = this.validateInputs();
       if (!isValid) {
@@ -144,7 +147,7 @@ export default {
       required
     ></cus-input>
     
-    <!-- <cus-input
+    <cus-input
       style="top: 65%"
       class="input"
       :path="code"
@@ -152,10 +155,10 @@ export default {
       v-model="verificationCode"
       width="200px"
       required
-    ></cus-input> -->
+    ></cus-input>
     
     <cus-input
-      style="top: 65%"
+      style="top: 75%"
       class="input"
       :path="PhoneNumber"
       content="请输入手机号"
@@ -163,9 +166,8 @@ export default {
       required
     ></cus-input>
     
-    <p type="button" style="right: 90px;top:79%;" @click="goToLogin">回到登录</p>
     <cus-button class="register-btn" content="注册" @click="register"></cus-button>
-    <!-- <cus-button class="code-btn" content="发送验证码"></cus-button> -->
+    <cus-button class="code-btn" content="发送验证码"></cus-button>
   </div>
 </template>
 
@@ -212,16 +214,5 @@ export default {
   top: 65%;
   z-index: 3;
   right: 61px;
-}
-div > p {
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  right: 46.5px;
-  transform: translateX(50%);
-  top: 265px;
-  color: rgb(140, 140, 140);
-  font-weight: 400;
-  cursor: pointer;
 }
 </style>
