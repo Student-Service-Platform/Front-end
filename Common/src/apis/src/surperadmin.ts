@@ -7,33 +7,44 @@
 
 import request from '../request'
 
-export const postAddAdmin = (
-  adminID: String,
-  name: String,
-  password: String,
-  mail: String,
-  phone: String
-) => {
-  return request.post('superadmin/appadmin', {
-    admin_id: adminID,
-    name,
-    password,
-    mail,
-    phone
-  })
+
+/**
+ * @description 添加管理
+ * @param user 
+ */
+export const postAddAdmin = (user: {
+  admin_id: string,
+  username: string,
+  password: string,
+  mail_auth: boolean,
+  phone: string,
+  mail: string
+}) => {
+  return request.post("superadmin/workbench",user)
 }
 
-export const delUser = (userID: String) => {
-  return request.delete(`superadmin/deluser?user_id=${userID}`)
+/**
+ * @description 删除用户
+ * @param userID 
+ */
+export const delAdmin = (userID:string)=>{
+  return request.delete("superadmin/workbench?UserID="+userID)
 }
 
-export const delAdmin = (userID: String) => {
-  return request.delete(`superadmin/deluser?admin_id=${userID}`)
+/**
+ * @description 获取被标记的信息列表 
+ * @param page 
+ * @param limit 
+ */
+export const getRubbish = (page:Number,limit:Number)=>{
+  return request.get(`superadmin/workbench?page=${page}&limit=${limit}`)
 }
 
-export const reviewFeedback = (request_id: number, if_rubbish :number) => {
-  return request.post('superadmin',{
-    request_id,
-    if_rubbish
-  })
+/**
+ * @description 对可疑信息操作
+ * @param id 
+ * @param action 
+ */
+export const putRubbish = (id:Number, action:Number)=>{
+  return request.put(`superadmin/workbench?id=${id}&action=${action}`)
 }
